@@ -8,7 +8,7 @@ const SiteNav = props => {
     <nav
       style={{
         // borderBottom: "solid 1px",
-        paddingBottom: "1rem"
+        // paddingBottom: "1rem"
       }}
     >
       <Link style={{ 'margin': '0 1rem' }} to="/">Inicio</Link>

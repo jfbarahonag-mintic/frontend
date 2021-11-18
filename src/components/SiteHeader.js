@@ -11,11 +11,9 @@ function SiteHeader() {
     return (
         <div className="SiteHeader">
             <section className="Left">
-                <svg width="60" height="60" viewBox="0 0 80 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0.5" y="0.5" width="79" height="69" stroke="black"/>
-                    <circle cx="39.5" cy="35.5" r="32" fill="#C4C4C4" stroke="black"/>
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="50" height="50" fill="#FEED00"/>
                 </svg>
-
                 <SiteNav />
             </section>
             <section className="Right">
@@ -41,9 +39,9 @@ function SiteHeader() {
                     </form>
                 </nav>
                 <div className="User">
-                    <svg width="60" height="60" viewBox="0 0 80 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="79" height="69" stroke="black"/>
-                        <circle cx="39.5" cy="35.5" r="32" fill="#C4C4C4" stroke="black"/>
+                    <svg width="30" height="30" viewBox="0 0 56 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="28.5" cy="16.5" r="16.5" fill="#898989"/>
+                        <path d="M0 68.3761C0 27.3763 55.5 28.3761 55.5 68.3761L0 68.3761Z" fill="#898989"/>
                     </svg>
                 </div>
             </section>

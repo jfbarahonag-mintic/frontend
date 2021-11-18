@@ -1,4 +1,3 @@
-import SiteNav from "../components/SiteNav";
 import SiteHeader from "../components/SiteHeader";
 
 
