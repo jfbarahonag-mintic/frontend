@@ -16,7 +16,7 @@
 
 .Left {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     margin-left: var(--border-px);
 }
 .Right {
@@ -33,10 +33,12 @@
 }
 
 .SearchBar {
+    padding: 4px 2px;
     display: flex;
-    -webkit-box-shadow: 0px 1px 1px 1px rgba(137, 137, 137, 0.5);
-    box-shadow        : 0px 1px 1px 1px rgba(137, 137, 137, 0.5);
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(137, 137, 137, 0.5);
+    box-shadow        : 0px 1px 1px 0px rgba(137, 137, 137, 0.5);
     margin-right: 1rem;
+    transition: background-color 500ms;
 }
 
 .SearchInput {
@@ -44,6 +46,12 @@
 }
 
 .SearchButton {
+    padding: 3px;
     background: none;
     border: none;
+    transition: background-color 500ms;
+}
+
+.SearchButton:hover {
+    background-color: #feed00
 }

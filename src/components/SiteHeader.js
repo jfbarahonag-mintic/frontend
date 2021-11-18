@@ -1,7 +1,13 @@
+import React, { useState } from 'react';
 import SiteNav from './SiteNav'
 import './styles/SiteHeader.css'
 
+
 function SiteHeader() {
+    
+    const [hovered, setHovered] = useState(false)
+    
+
     return (
         <div className="SiteHeader">
             <section className="Left">
@@ -14,16 +20,22 @@ function SiteHeader() {
             </section>
             <section className="Right">
                 <nav className="Search">
-                    <form action="" className="SearchBar">
+                    <form action=""
+                        className="SearchBar"
+                        style={hovered ? {backgroundColor:"#feed00"} : {}}
+                        >
                         <input type="text"
                             placeholder="Search..."
                             name="search"
                             id="search"
                             className="SearchInput"/>
-                        <button className="SearchButton">
+                        <button className="SearchButton"
+                            onMouseEnter={() => { setHovered(true) }}
+                            onMouseLeave={() => { setHovered(false) }}
+                        >
                             <svg width="17" height="22" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="1.152" y1="21.47" x2="6.152" y2="13.47" stroke="#898989" stroke-width="2"/>
-                                <circle cx="9.5" cy="7.5" r="6.5" stroke="#898989" stroke-width="2"/>
+                                <line x1="1.152" y1="21.47" x2="6.152" y2="13.47" stroke="#898989" strokeWidth="2"/>
+                                <circle cx="9.5" cy="7.5" r="6.5" stroke="#898989" strokeWidth="2"/>
                             </svg>
                         </button>
                     </form>
