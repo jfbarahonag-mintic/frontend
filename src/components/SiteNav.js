@@ -9,12 +9,13 @@ const SiteNav = props => {
       style={{
         // borderBottom: "solid 1px",
         // paddingBottom: "1rem"
+        fontWeight: "200",
       }}
     >
-      <Link style={{ 'margin': '0 1rem' }} to="/">Inicio</Link>
-      <Link style={{ 'margin': '0 1rem' }} to="/productos">Productos</Link>
-      <Link style={{ 'margin': '0 1rem' }} to="/nosotros">Nosotros</Link>
-      <Link style={{ 'margin': '0 1rem' }} to="/contacto">Contacto</Link>
+      <Link style={{ "text-decoration": "none" , color: "inherit" , 'margin': '0 1rem 0 2rem' }} to="/">Inicio</Link>
+      <Link style={{ "text-decoration": "none" , color: "inherit" , 'margin': '0 1rem' }} to="/productos">Productos</Link>
+      <Link style={{ "text-decoration": "none" , color: "inherit" , 'margin': '0 1rem' }} to="/nosotros">Nosotros</Link>
+      <Link style={{ "text-decoration": "none" , color: "inherit" , 'margin': '0 1rem' }} to="/contacto">Contacto</Link>
     </nav>
   )
 }
