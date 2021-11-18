@@ -7,14 +7,14 @@ const SiteNav = props => {
   return (
     <nav
       style={{
-        borderBottom: "solid 1px",
+        // borderBottom: "solid 1px",
         paddingBottom: "1rem"
       }}
     >
-      <Link to="/">Inicio</Link> |{" "}
-      <Link to="/productos">Productos</Link> |{" "}
-      <Link to="/nosotros">Nosotros</Link> |{" "}
-      <Link to="/contacto">Contacto</Link>
+      <Link style={{ 'margin': '0 1rem' }} to="/">Inicio</Link>
+      <Link style={{ 'margin': '0 1rem' }} to="/productos">Productos</Link>
+      <Link style={{ 'margin': '0 1rem' }} to="/nosotros">Nosotros</Link>
+      <Link style={{ 'margin': '0 1rem' }} to="/contacto">Contacto</Link>
     </nav>
   )
 }
