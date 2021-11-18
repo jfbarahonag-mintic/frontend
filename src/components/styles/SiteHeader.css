@@ -20,6 +20,11 @@
     align-items: center;
     margin-left: var(--border-px);
 }
+
+.Left > svg {
+    margin-right: 1rem;
+}
+
 .Right {
     display: flex;
     align-items: center;
