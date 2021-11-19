@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SiteNav from "../components/SiteNav";
+import SiteNav from "../components/SiteNav"
+import PageTitle from '../components/PageTitle';
 
 const Contacto = props => {
   return (
     <div>
       <SiteNav />
-      <h1>Contacto</h1>
+      <PageTitle title="CONTACTO"/> 
     </div>
   )
 }
