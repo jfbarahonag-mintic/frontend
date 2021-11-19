@@ -2,7 +2,7 @@
     --border-px: 5rem;
 }
 
-.site-header {
+.site-header__container {
     background-color: rgb(255, 255, 255);
     display: flex;
     width: 100%;
