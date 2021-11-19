@@ -1,5 +1,6 @@
 :root {
     --border-px: 5rem;
+    --bg-btn-responsive: #5c5c5c;
 }
 
 .site-header__container {
@@ -9,6 +10,7 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 1rem;
+    min-height: 58px;
 }
 
 .Nav {
@@ -65,4 +67,37 @@
 
 .site-header__search-button:hover {
     background-color: #feed00
+}
+
+.responsive-button {
+    height: 30px;
+    width: 30px;
+    margin-right: var(--border-px);
+    padding: 3px;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    transition: background-color 500ms;
+}
+
+.responsive-button:hover {
+    background-color: #feed00;
+}
+
+.responsive-button__border {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: auto;
+    
+}
+
+.responsive-button__line {
+    width: auto;
+    height: 3px;
+    /* border: 1px solid black; */
+    background-color: var(--bg-btn-responsive);
 }
