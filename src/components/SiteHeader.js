@@ -19,18 +19,20 @@ function SiteHeader() {
                     </div>
                     {isPageWide && <SiteNav />}
                 </div>
-                <div className="Right">
-                    <nav className="Search">
+                <div className="site-header__box">
+                    <nav className="site-header__search">
                         <form action=""
-                            className="SearchBar"
+                            className="site-header__Search-bar"
                             style={hovered ? {backgroundColor:"#feed00"} : {}}
                             >
                             <input type="text"
+                                className="site-header__search-input"
                                 placeholder="Search..."
                                 name="search"
                                 id="search"
-                                className="SearchInput"/>
-                            <button className="SearchButton"
+                            />
+                            <button
+                                className="site-header__search-button"
                                 onMouseEnter={() => { setHovered(true) }}
                                 onMouseLeave={() => { setHovered(false) }}
                             >
