@@ -1,16 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
-import './styles/SiteNav.css'
+import './SiteNav.css'
 
 
-const SiteNav = props => {
+const SiteNav = ({isMobile}) => {
+
+  const navClass = 'site-nav ' + (isMobile ? 'site-nav--responsive' : 'site-nav--primary')
+
   return (
-    <nav className="NavBar">
-      <Link className="NavItem" to="/">Inicio</Link>
-      <Link className="NavItem" to="/productos">Productos</Link>
-      <Link className="NavItem" to="/nosotros">Nosotros</Link>
-      <Link className="NavItem" to="/contacto">Contacto</Link>
+    <nav className={ navClass }>
+      <ul className="site-nav__list">
+        <li className="site-nav__item">
+          <Link className="site-nav__link" to="/">Inicio</Link>
+        </li>
+        <li className="site-nav__item">
+          <Link className="site-nav__link" to="/productos">Productos</Link>
+        </li>
+        <li className="site-nav__item">
+          <Link className="site-nav__link" to="/nosotros">Nosotros</Link>
+        </li>
+        <li className="site-nav__item">
+          <Link className="site-nav__link" to="/contacto">Contacto</Link>
+        </li>
+      </ul>
     </nav>
   )
 }
