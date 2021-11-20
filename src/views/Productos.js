@@ -2,14 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SiteNav from "../components/SiteNav";
 import ProductsFilter from '../components/ProductsFilter';
+import SiteHeader from "../components/SiteHeader"
+import PageTitle from '../components/PageTitle';
+
 
 const Productos = props => {
   return (
     <div>
-      <SiteNav />
-      <br/>
+      <SiteHeader />
+      <PageTitle title="PRODUCTOS"/> 
       <ProductsFilter />
-      <h1>Productos</h1>
     </div>
   )
 }
