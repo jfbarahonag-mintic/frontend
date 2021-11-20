@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SiteNav from "../components/SiteNav";
+import SiteHeader from "../components/SiteHeader"
 
 const Nosotros = props => {
   return (
     <div>
-      <SiteNav />
+      <SiteHeader />
       <h1>Nosotros</h1>
     </div>
   )

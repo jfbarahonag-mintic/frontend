@@ -10,6 +10,7 @@ import Productos from "./views/Productos";
 import Nosotros from "./views/Nosotros";
 import Contacto from "./views/Contacto";
 
+import './reset.css';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
