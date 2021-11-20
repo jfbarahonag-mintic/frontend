@@ -1,18 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SiteHeader from "../components/SiteHeader"
+import PageTitle from '../components/PageTitle'
 
 const Nosotros = props => {
   return (
     <div>
       <SiteHeader />
-      <h1>Nosotros</h1>
+      <PageTitle title="NOSOTROS"/>
     </div>
   )
-}
-
-Nosotros.propTypes = {
-
 }
 
 export default Nosotros
