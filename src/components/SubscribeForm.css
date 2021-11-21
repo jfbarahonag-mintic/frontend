@@ -1,0 +1,13 @@
+/*-------------------------------------------*\
+    SubscribeForm.css
+\*-------------------------------------------*/
+
+.subscribe-form {
+  display: block;
+  padding: 3rem;
+  box-shadow: 0 0 6px #ccc;
+}
+
+.subscribe-form__buttons-box {
+  display: flex;
+}

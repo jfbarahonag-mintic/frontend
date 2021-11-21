@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import './CallToAction.css'
+import SubscribeForm from "./SubscribeForm";
 
 const CallToAction = () => {
 
+  const [showSubscribeForm, setShowSubscribeForm] = useState(false)
+
   const emitClick = () => {
-    console.log('click')
+    setShowSubscribeForm(true)
   }
 
   return (
+    <>
     <section className="call-to-action box">
       <div className="call-to-action__container box__container">
         <p className="call-to-action__text">SUSCRIBETE A NUESTRO NEWSLETTER Y CONSIGUE 15% DE DESCUENTO.</p>
@@ -14,6 +19,11 @@ const CallToAction = () => {
           className="button primary-button">SUBSCRIBIRME</button>
       </div>
     </section>
+    <br/>
+    {
+      showSubscribeForm ? <SubscribeForm /> : ''
+    }
+    </>
   )
 }
 
