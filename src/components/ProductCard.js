@@ -1,45 +1,51 @@
-import react, {userState} from 'react';
+import {useState} from 'react';
 import './ProductCard.css'
 
-function ProductCard({ /* Some props */ }) {
+function ProductCard({ data }) {
+
+    const { title, urls, characteristics, price, description } = data
+    
+    let [mainImage, setMainImage] = useState(urls[0])
+    
+    const small = urls.slice(1, urls.length)
+
+    let [smallImages, setSmallImages] = useState(small)
+
+    console.log(smallImages)
+
+    const listImages = smallImages.map((val, idx) => 
+            <li
+                className="product-card__overview--images-list_item"
+                key={idx}
+            >
+                <img src={val} alt={idx} />
+            </li>
+    )
+
+    const listCharacteristics = characteristics.map((val, idx) => <li key={idx}> { val } </li>)
+
     return ( 
         <div className="product-card">
             <div className="product-card__overview">
                 <div className="product-card__overview--images">
                     <div className="product-card__overview--images-list">
                         <ul>
-                            {/* TODO: Replace using a For Loop */}
-                            <li className="product-card__overview--images-list_item">
-                                <img src="/images/test/cel.png" alt="small image" />
-                            </li>
-                            <li className="product-card__overview--images-list_item">
-                                <img src="/images/test/cel.png" alt="small image" />
-                            </li>
-                            <li className="product-card__overview--images-list_item">
-                                <img src="/images/test/cel.png" alt="small image" />
-                            </li>
-                            <li className="product-card__overview--images-list_item">
-                                <img src="/images/test/cel.png" alt="small image" />
-                            </li>
-                            <li className="product-card__overview--images-list_item">
-                                <img src="/images/test/cel.png" alt="small image" />
-                            </li>
-                            
+                            {listImages}
                         </ul>
                     </div>
                     <div className="product-card__overview--images-main">
-                        <img src="/images/test/cel.png" alt="main image" />
+                        <img src={ mainImage } alt="main" />
                     </div>
                 </div>
                 <div className="product-card__overview--info">
                     <div className="product-card__overview--info-title">
-                        Title
+                        { title }
                     </div>
                     <p className="product-card__overview--info-paragraph">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, culpa libero? Dicta nemo officiis rem repellat quasi, corporis modi iusto omnis optio animi, voluptate impedit harum quia doloribus quis cupiditate.
+                        { description }
                     </p>
                     <div className="product-card__overview--info-price">
-                        $XXX.YYY
+                        ${ price }
                     </div>
                     <button className="product-card__overview--info-button">
                         Button
@@ -50,15 +56,7 @@ function ProductCard({ /* Some props */ }) {
                 <div className="product-card__characteristics--title">CHARACTERISTICS</div>
                 <div className="product-card__characteristics--list">
                     <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                        <li>5</li>
-                        <li>6</li>
-                        <li>7</li>
-                        <li>8</li>
-                        <li>9</li>
+                        {listCharacteristics}
                     </ul>
                 </div>
             </div>
