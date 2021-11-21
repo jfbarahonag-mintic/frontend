@@ -16,7 +16,7 @@
 }
 
 .product-card__overview--images-list_item {
-    align-items: start;
+    align-items: flex-start;
     border: 0.5px solid rgba(78, 78, 78, 0.336);
     display: flex;
 }
@@ -28,6 +28,10 @@
 /*-----------*/
 .product-card__overview--images-main {
     display: flex;
+}
+
+.product-card__overview--images-main > img{
+    max-width: 250px;
 }
 /*----------------------*/
 .product-card__overview--info {
