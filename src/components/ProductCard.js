@@ -6,19 +6,21 @@ function ProductCard({ data }) {
     const { title, urls, characteristics, price, description } = data
     
     let [mainImage, setMainImage] = useState(urls[0])
-    
-    const small = urls.slice(1, urls.length)
 
-    let [smallImages, setSmallImages] = useState(small)
+    let [smallImages, setSmallImages] = useState(urls)
 
-    console.log(smallImages)
+    const handleClick = (e) => {
+        if (e.target.src !== undefined && e.target.src !== mainImage) {
+            setMainImage(e.target.src)
+        }
+    }
 
     const listImages = smallImages.map((val, idx) => 
             <li
                 className="product-card__overview--images-list_item"
                 key={idx}
             >
-                <img src={val} alt={idx} />
+                <img src={val} alt={idx} onClick={ handleClick }/>
             </li>
     )
 
