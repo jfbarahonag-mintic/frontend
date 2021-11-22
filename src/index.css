@@ -34,6 +34,27 @@ a {
 	text-decoration: none;
 }
 
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 160px;
+	min-height: 48px;
+	padding: 0.8rem 3rem;
+
+	background-color: transparent;
+	color: var(--c2);
+	font-family: var(--f1);
+	font-size: 2rem;
+	font-weight: 600;
+	border: 2px solid var(--c2);
+}
+
+.primary-button {
+	background-color: #ccc;
+	color: var(--c2)
+}
+
 .box {
 	display: block;
 	padding: 0 3rem;
