@@ -1,0 +1,108 @@
+/*--------------------------------------------*/
+.product__overview {
+    display: flex;
+    padding: 4rem 2rem;
+}
+
+.product__overview-mobile {
+    display: block;
+    padding: 4rem 0;
+}
+/*----------------------*/
+.product__overview--images {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+}
+
+.product__overview--images-mobile {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.product__overview--images-list > ul > li {
+    margin-bottom: 10px;
+}
+
+.product__overview--images-list_item {
+    align-items: flex-start;
+    border: 0.5px solid rgba(78, 78, 78, 0.336);
+    display: flex;
+}
+
+.product__overview--images-list_item > img {
+    cursor: pointer;
+    height: 70px;
+    width: auto;
+}
+/*-----------*/
+.product__overview--images-main, .product__overview--images-main-mobile {
+    display: flex;
+}
+
+.product__overview--images-main > img{
+    max-width: 250px;
+}
+
+.product__overview--images-main-mobile > img{
+    max-width: 200px;
+}
+/*----------------------*/
+.product__overview--info {
+    padding: 0 2rem;
+    width: 50%;
+}
+
+.product__overview--info-mobile {
+    padding: 0 2rem;
+}
+
+.product__overview--info > * {
+    margin-bottom: 20px;
+}
+
+.product__overview--info-mobile > * {
+    margin-bottom: 20px;
+}
+/*-----------*/
+.product__overview--info-title {
+    margin-top: 20px;
+    font-weight: 500;
+}
+/*-----------*/
+.product__overview--info-price {
+    font-weight: 500;
+}
+/*-----------*/
+.product__overview--info-button {
+    background: none;
+    border: 2px solid black;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 1rem 5rem;
+}
+/*--------------------------------------------*/
+.product__characteristics {
+    display: flex;
+    flex-direction: column;
+    margin-left: 6rem;
+}
+/*----------------------*/
+.product__characteristics--title {
+    font-weight: 500;
+}
+/*----------------------*/
+.product__characteristics--list > ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+.product__characteristics--list-mobile > ul {
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+}
