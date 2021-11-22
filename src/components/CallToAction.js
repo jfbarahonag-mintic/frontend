@@ -16,12 +16,12 @@ const CallToAction = () => {
       <div className="call-to-action__container box__container">
         <p className="call-to-action__text">SUSCRIBETE A NUESTRO NEWSLETTER Y CONSIGUE 15% DE DESCUENTO.</p>
         <button onClick={ emitClick }
-          className="button primary-button">SUBSCRIBIRME</button>
+          className="button primary-button">SUBSCRIBETE</button>
       </div>
     </section>
     <br/>
     {
-      showSubscribeForm ? <SubscribeForm /> : ''
+      showSubscribeForm ? <SubscribeForm setShowSubscribeForm={ setShowSubscribeForm }/> : ''
     }
     </>
   )
