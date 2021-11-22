@@ -1,31 +1,9 @@
+import { useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import CoverSlider from "../components/CoverSlider";
-import ProductCard from "../components/ProductCard";
-
+import ProductsList from "../components/ProductsList";
 import './Home.css'
-
-const ProductsSection = () => {
-  return (
-    <section className="home-products box">
-      <div className="box__container">
-        <h2 className="home-products__title sub-title">PRODUCTOS</h2>
-        <div className="home-products__grid">
-          {
-            <>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            </>
-          }
-        </div>
-      </div>
-    </section>
-  )
-}
 
 const HomeDescription = () => {
   return (
@@ -46,11 +24,17 @@ const HomeDescription = () => {
 }
 
 const Home = () => {
+
+  const [products, setProducts] = useState([1,2,3,4,5,6])
+
   return (
     <>
       <SiteHeader />
       <CoverSlider />
-      <ProductsSection />
+      <ProductsList 
+        products={ products } 
+        h2="PRODUCTOS"
+      />
       <HomeDescription />
       <SiteFooter />
     </>

@@ -2,20 +2,6 @@
     Home.css
 \*-------------------------------------------*/
 
-/* home-product */
-.home-products__title {
-  text-align: center;
-}
-
-.home-products__grid {
-  margin: auto;
-  margin-top: 5rem;
-  max-width: 1024px;
-  display: grid;
-  gap: 5rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
 /* home-description */
 .home-description__title {
   text-align: center;
