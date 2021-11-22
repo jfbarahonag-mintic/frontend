@@ -5,6 +5,7 @@ const SubscribeForm = ({ setShowSubscribeForm }) => {
   const formSubmit = (e) => {
     e.preventDefault()
     // console.log(e)
+    // Acá hay que chequear la validación manejar y el envío de los datos
   }
 
   const handleCancelBtn = () => {
