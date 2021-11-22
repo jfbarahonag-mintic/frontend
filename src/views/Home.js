@@ -1,11 +1,60 @@
 import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter";
+import CoverSlider from "../components/CoverSlider";
+import ProductCard from "../components/ProductCard";
 
+import './Home.css'
 
-export default function App() {
+const ProductsSection = () => {
   return (
-    <div>
-      <SiteHeader />
-      <h1>Home</h1>
-    </div>
-  );
+    <section className="home-products box">
+      <div className="box__container">
+        <h2 className="home-products__title sub-title">PRODUCTOS</h2>
+        <div className="home-products__grid">
+          {
+            <>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            </>
+          }
+        </div>
+      </div>
+    </section>
+  )
 }
+
+const HomeDescription = () => {
+  return (
+    <section className="home-description box">
+      <div className="home-description__container box__container">
+        <h2 className="home-description__title sub-title">DESCRIPCIÓN</h2>
+        <div className="home_description__content">
+          <img 
+            className="home_description__img"
+            src="/images/home/phone.jpg" 
+            alt="Foto descripción"
+          />
+          <p className="home_description__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const Home = () => {
+  return (
+    <>
+      <SiteHeader />
+      <CoverSlider />
+      <ProductsSection />
+      <HomeDescription />
+      <SiteFooter />
+    </>
+  )
+}
+
+export default Home
