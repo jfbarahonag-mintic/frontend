@@ -1,4 +1,6 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import useMediaQuery from './MediaQuery'
+
 import './ProductCard.css'
 
 function ProductCard({ data }) {
@@ -6,8 +8,8 @@ function ProductCard({ data }) {
     const { title, urls, characteristics, price, description } = data
     
     let [mainImage, setMainImage] = useState(urls[0])
-
     let [smallImages, setSmallImages] = useState(urls)
+    let isPageWide = useMediaQuery('(min-width: 768px)')
 
     const handleClick = (e) => {
         if (e.target.src !== undefined && e.target.src !== mainImage) {
@@ -28,18 +30,18 @@ function ProductCard({ data }) {
 
     return ( 
         <div className="product-card">
-            <div className="product-card__overview">
-                <div className="product-card__overview--images">
+            <div className={ isPageWide ? "product-card__overview" : "product-card__overview-mobile" }>
+                <div className={ isPageWide ? "product-card__overview--images" : "product-card__overview--images-mobile" }>
                     <div className="product-card__overview--images-list">
                         <ul>
                             {listImages}
                         </ul>
                     </div>
-                    <div className="product-card__overview--images-main">
+                    <div className={ isPageWide ? "product-card__overview--images-main" : "product-card__overview--images-main-mobile" } >
                         <img src={ mainImage } alt="main" />
                     </div>
                 </div>
-                <div className="product-card__overview--info">
+                <div className={ isPageWide ? "product-card__overview--info" : "product-card__overview--info-mobile" }>
                     <div className="product-card__overview--info-title">
                         { title }
                     </div>
@@ -56,7 +58,7 @@ function ProductCard({ data }) {
             </div>
             <div className="product-card__characteristics">
                 <div className="product-card__characteristics--title">CHARACTERISTICS</div>
-                <div className="product-card__characteristics--list">
+                <div className={ isPageWide ? "product-card__characteristics--list" : "product-card__characteristics--list-mobile" }>
                     <ul>
                         {listCharacteristics}
                     </ul>
