@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import { useParams } from 'react-router';
 import useMediaQuery from './MediaQuery'
 
 import './Producto.css'
 
 function Producto({ data }) {
+
+    let { slug } = useParams();
+
+    // retornar // Hacer una función para encontrar el producto que coincide con el slug
+
+    // Lo de abajo se debe desestructurar de lo quie retornó arriba.
 
     const { title, urls, characteristics, price, description } = data
     
