@@ -34,16 +34,19 @@ const Home = () => {
       id: "1",
       title: "Awesome forest",
       image: img1,
+      color: 'khaki'
     },
     {
       id: "2",
       title: "A litle bird.",
       image: img2,
+      color: 'lightcyan'
     },
     {
       id: "3",
       title: "The best friend.",
       image: img3,
+      color: 'seashell'
     },
   ];
 
