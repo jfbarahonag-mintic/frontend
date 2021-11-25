@@ -1,6 +1,6 @@
 .slider {
   width: 100%;
-  height: 100vh;
+  height: 55vh;
   overflow: hidden;
   position: relative;
 }
@@ -38,3 +38,10 @@
   padding: 1rem 4rem;
   background-color: rgba(255, 85, 85, 0.5);
 }
+
+/* .slick-prev:before {
+  content: url("../asset/left1-arrow.png");
+}
+.slick-next:before {
+  content: url("../asset/next.png");
+} */
