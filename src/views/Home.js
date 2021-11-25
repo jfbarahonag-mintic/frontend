@@ -3,7 +3,33 @@ import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import CoverSlider from "../components/CoverSlider";
 import ProductsList from "../components/ProductsList";
+
+import { getProducts } from "../api";
+
 import './Home.css'
+import { useEffect } from "react";
+
+  
+const SliderImages = [
+  {
+    id: "1",
+    title: "Awesome forest",
+    // image: img1,
+    color: 'khaki'
+  },
+  {
+    id: "2",
+    title: "A litle bird.",
+    // image: img2,
+    color: 'lightcyan'
+  },
+  {
+    id: "3",
+    title: "The best friend.",
+    // image: img3,
+    color: 'seashell'
+  },
+];
 
 const HomeDescription = () => {
   return (
@@ -25,12 +51,21 @@ const HomeDescription = () => {
 
 const Home = () => {
 
-  const [products, setProducts] = useState([1,2,3,4,5,6])
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    getProducts()
+    .then(resp => resp.json())
+    .then(resp => {
+      let localProducts = resp.slice(0, 6)
+      setProducts(localProducts)
+    })
+  }, [])
 
   return (
     <>
       <SiteHeader />
-      <CoverSlider />
+      <CoverSlider images={SliderImages} />
       <ProductsList 
         products={ products } 
         h2="PRODUCTOS"

@@ -5,6 +5,7 @@ import useMediaQuery from './MediaQuery'
 import './SiteHeader.css'
 import SiteLogo from '../assets/cellphone.svg'
 import AccountIcon from '../assets/account.svg'
+import { Link } from 'react-router-dom';
 
 
 function SiteHeader() {
@@ -37,7 +38,9 @@ function SiteHeader() {
                             {/* <SearchBox /> */}
                             
                             <div className="User">
-                                <img src={ AccountIcon } alt="User icon" />
+                                <Link to="login">
+                                    <img src={ AccountIcon } alt="User icon" />
+                                </Link>
                             </div>
                         </>
                     :
