@@ -4,10 +4,32 @@ import SiteFooter from "../components/SiteFooter";
 import CoverSlider from "../components/CoverSlider";
 import ProductsList from "../components/ProductsList";
 
+import { getProducts } from "../api";
+
 import './Home.css'
-import img1 from "../asset/blade8.jpg";
-import img2 from "../asset/ZTE-blade8L811.jpg";
-import img3 from "../asset/ZTE-bladeL8.jpg";
+import { useEffect } from "react";
+
+  
+const SliderImages = [
+  {
+    id: "1",
+    title: "Awesome forest",
+    // image: img1,
+    color: 'khaki'
+  },
+  {
+    id: "2",
+    title: "A litle bird.",
+    // image: img2,
+    color: 'lightcyan'
+  },
+  {
+    id: "3",
+    title: "The best friend.",
+    // image: img3,
+    color: 'seashell'
+  },
+];
 
 const HomeDescription = () => {
   return (
@@ -28,34 +50,22 @@ const HomeDescription = () => {
 }
 
 const Home = () => {
-  
-  const images = [
-    {
-      id: "1",
-      title: "Awesome forest",
-      image: img1,
-      color: 'khaki'
-    },
-    {
-      id: "2",
-      title: "A litle bird.",
-      image: img2,
-      color: 'lightcyan'
-    },
-    {
-      id: "3",
-      title: "The best friend.",
-      image: img3,
-      color: 'seashell'
-    },
-  ];
 
-  const [products, setProducts] = useState([1,2,3,4,5,6])
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    getProducts()
+    .then(resp => resp.json())
+    .then(resp => {
+      let localProducts = resp.slice(0, 6)
+      setProducts(localProducts)
+    })
+  }, [])
 
   return (
     <>
       <SiteHeader />
-      <CoverSlider images={images} />
+      <CoverSlider images={SliderImages} />
       <ProductsList 
         products={ products } 
         h2="PRODUCTOS"

@@ -9,7 +9,7 @@ const ProductsList = ({products, h2}) => {
         <div className="products-list__grid">
           {
             products.map(product => {
-              return <ProductCard key={ product } />
+              return <ProductCard key={ product._id } />
             })
           }
         </div>
