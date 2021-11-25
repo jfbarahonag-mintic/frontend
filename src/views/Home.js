@@ -3,7 +3,11 @@ import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 import CoverSlider from "../components/CoverSlider";
 import ProductsList from "../components/ProductsList";
+
 import './Home.css'
+import img1 from "../asset/blade8.jpg";
+import img2 from "../asset/ZTE-blade8L811.jpg";
+import img3 from "../asset/ZTE-bladeL8.jpg";
 
 const HomeDescription = () => {
   return (
@@ -24,13 +28,31 @@ const HomeDescription = () => {
 }
 
 const Home = () => {
+  
+  const images = [
+    {
+      id: "1",
+      title: "Awesome forest",
+      image: img1,
+    },
+    {
+      id: "2",
+      title: "A litle bird.",
+      image: img2,
+    },
+    {
+      id: "3",
+      title: "The best friend.",
+      image: img3,
+    },
+  ];
 
   const [products, setProducts] = useState([1,2,3,4,5,6])
 
   return (
     <>
       <SiteHeader />
-      <CoverSlider />
+      <CoverSlider images={images} />
       <ProductsList 
         products={ products } 
         h2="PRODUCTOS"

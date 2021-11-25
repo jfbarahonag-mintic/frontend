@@ -1,15 +1,29 @@
-const CoverSlider = () => {
+import React from "react";
+import Slider from "infinite-react-carousel";
+// import prevArrowP from "../asset/left1-arrow.png";
+// import nextArrowP from "../asset/next.png";
 
-  const style = {
-    height:'400px',
-    background: '#ffed00'
-  }
+import "./CoverSlider.css";
+const CoverSlider = ({ images }) => {
+  const settings = {
+    autoplay: true,
+  };
 
   return (
-    <div style={ style }>
-      CoverSlider Component
-    </div>
-  )
-}
+    <section className="slider">
+      <h1 className="slider__title">Carousel con infinite-react-carousel</h1>
+      <Slider className="slider__content" {...settings}>
+        {images.map((image) => (
+          <div key={image.id} className="slider__content--item">
+            <a href="/#">
+              <img src={image.image} alt={image.title} />
+              <p className="slider-description">{image.title}</p>
+            </a>
+          </div>
+        ))}
+      </Slider>
+    </section>
+  );
+};
 
-export default CoverSlider
+export default CoverSlider;

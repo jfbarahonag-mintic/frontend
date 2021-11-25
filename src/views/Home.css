@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*-------------------------------------------*\
     Home.css
 \*-------------------------------------------*/
@@ -31,3 +32,15 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+=======
+.App {
+  width: 100%;
+  min-height: 100vh;
+}
+
+section {
+  width: 100%;
+  min-height: 400vh;
+  position: relative;
+}
+>>>>>>> 1f3709f0b6a918c46c9e0db226e4a6f703b43a62
