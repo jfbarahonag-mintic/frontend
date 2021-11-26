@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import SiteNav from './SiteNav'
+import SearchBox from './SearchBox'
 import useMediaQuery from './MediaQuery'
 
 import './SiteHeader.css'
 import SiteLogo from '../assets/cellphone.svg'
 import AccountIcon from '../assets/account.svg'
+
 
 
 function SiteHeader() {
@@ -33,8 +35,9 @@ function SiteHeader() {
                 <div className="site-header__box">
                 { 
                     isPageWide ?
-                        <>
+                    <>
                             {/* <SearchBox /> */}
+                            <SearchBox/>
                             
                             <div className="User">
                                 <img src={ AccountIcon } alt="User icon" />
