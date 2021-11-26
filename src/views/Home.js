@@ -57,7 +57,7 @@ const Home = () => {
     getProducts()
     .then(resp => resp.json())
     .then(resp => {
-      let localProducts = resp.slice(0, 6)
+      let localProducts = resp.slice(0, 6); console.log(localProducts)
       setProducts(localProducts)
     })
   }, [])

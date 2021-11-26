@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
-import useMediaQuery from './MediaQuery'
+import useMediaQuery from 'react-responsive'
 
 import './Producto.css'
 
