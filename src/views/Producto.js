@@ -1,77 +1,128 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import useMediaQuery from 'react-responsive'
+import { getProductBySlug, getProductsByCategory } from '../api';
+import useMediaQuery from '../hooks/useMediaQuery'
+import SiteHeader from '../components/SiteHeader'
+import BreadCrumbs from '../components/BreadCrumbs'
+import ProductsFilter from '../components/ProductsFilter'
+import ProductsList from '../components/ProductsList'
+import SiteFooter from '../components/SiteFooter'
+
 
 import './Producto.css'
+import ProductGallery from '../components/ProductGallery';
 
-function Producto({ data }) {
+function Producto() {
 
-    let { slug } = useParams();
-
-    // retornar // Hacer una función para encontrar el producto que coincide con el slug
-
-    // Lo de abajo se debe desestructurar de lo quie retornó arriba.
-
-    const { title, urls, characteristics, price, description } = data
+    const { slug } = useParams();
     
-    let [mainImage, setMainImage] = useState(urls[0])
-    let [smallImages, setSmallImages] = useState(urls)
-    let isPageWide = useMediaQuery('(min-width: 768px)')
+    const [name, setName] = useState('')
+    const [images, setImages] = useState([])
+    const [price, setPrice] = useState(0)
+    const [description, setDescription] = useState('')
+    const [features, setFeatures] = useState([])
+    const [category_id, setCategory_id] = useState('')
+    const [relatedProducts, setRelatedProducts] = useState([])
 
-    const handleClick = (e) => {
-        if (e.target.src !== undefined && e.target.src !== mainImage) {
-            setMainImage(e.target.src)
+    const isPageWide = useMediaQuery('(min-width: 768px)')
+  
+    useEffect(() => {
+      getProductBySlug(slug)
+      .then(resp => resp.json())
+      .then(data => setValues(data) )
+    }, [slug])
+
+    useEffect(() => {
+        if (category_id) {
+            getRelatedProducts(category_id)
         }
+    }, [category_id])
+
+    const setValues = (p) => {
+        setName(p.name)
+        setImages(p.images)
+        setPrice(p.price)
+        setDescription(p.description)
+        setFeatures(p.features)
+        setCategory_id(p.category_id)
     }
 
-    const listImages = smallImages.map((val, idx) => 
-            <li
-                className="product__overview--images-list_item"
-                key={idx}
-            >
-                <img src={val} alt={idx} onClick={ handleClick }/>
-            </li>
+    const getRelatedProducts = (id) => {
+        getProductsByCategory(id)
+        .then(resp => resp.json())
+        .then(resp => {
+            let products = resp.splice(0, 3)
+            setRelatedProducts(products)
+        })
+    }
+
+    const productTitle = (
+        <h1 className="product-page__title sub-title">
+            { name }
+        </h1>
     )
 
-    const listCharacteristics = characteristics.map((val, idx) => <li key={idx}> { val } </li>)
+    const featuresList = features.map((feature, idx) => (
+        <li key={idx}
+            className="product-page__features-item"> 
+            { feature } 
+        </li>
+    ))
+
+    const RelatedProducts = () => {
+        return (
+                    // <h2 className="related-products__title sub-title">Productos relacionados</h2>
+                    <ProductsList 
+                        products={ relatedProducts } 
+                        h2="Productos relacionados"
+                    />
+        )
+    }
 
     return ( 
-        <div className="product">
-            <div className={ isPageWide ? "product__overview" : "product__overview-mobile" }>
-                <div className={ isPageWide ? "product__overview--images" : "product__overview--images-mobile" }>
-                    <div className="product__overview--images-list">
-                        <ul>
-                            {listImages}
-                        </ul>
+        <>
+        <SiteHeader />
+        <BreadCrumbs />
+        <ProductsFilter />
+        <main className="product-page box">
+            <div className="box__container">
+
+                <div className="product-page__overview">
+                    
+                    { isPageWide ? '' : productTitle }
+
+                    <ProductGallery 
+                        images={ images } 
+                    />
+                    
+                    <div className="product-page__info">
+                        
+                        { isPageWide ? productTitle : '' }
+
+                        <p className="product-page__description">
+                            { description }
+                        </p>
+                        <div className="product-page__price sub-title">
+                            $ { price.toLocaleString("es-ES") }
+                        </div>
+                        <button className="product-page__button button">
+                            COMPRAR
+                        </button>
                     </div>
-                    <div className={ isPageWide ? "product__overview--images-main" : "product__overview--images-main-mobile" } >
-                        <img src={ mainImage } alt="main" />
-                    </div>
+
                 </div>
-                <div className={ isPageWide ? "product__overview--info" : "product__overview--info-mobile" }>
-                    <div className="product__overview--info-title">
-                        { title }
-                    </div>
-                    <p className="product__overview--info-paragraph">
-                        { description }
-                    </p>
-                    <div className="product__overview--info-price">
-                        ${ price }
-                    </div>
-                    <button className="product__overview--info-button">
-                        Button
-                    </button>
-                </div>
-            </div>
-            <div className="product__characteristics">
-                <div className="product__characteristics--title">CHARACTERISTICS</div>
-                <div className={ isPageWide ? "product__characteristics--list" : "product__characteristics--list-mobile" }>
-                    <ul>
-                        {listCharacteristics}
+                <div className="product-page__features">
+                    <h2 className="product-page__features-title">CARACTERÍSTICAS:</h2>
+                    <ul className="product-page__features-list">
+                        {featuresList}
                     </ul>
                 </div>
             </div>
-        </div>
+        </main>
+
+        <RelatedProducts />
+        <SiteFooter />
+        </>
     );
 }
 

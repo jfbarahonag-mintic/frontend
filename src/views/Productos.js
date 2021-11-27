@@ -16,7 +16,7 @@ const Productos = props => {
       <BreadCrumbs />
       <PageTitle title="PRODUCTOS"/> 
       <ProductsFilter />
-      <ProductsList products={ products } />
+      {/* <ProductsList products={ products } /> */}
       <SiteFooter />
     </div>
   )
