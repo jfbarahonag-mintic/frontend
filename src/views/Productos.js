@@ -1,14 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ProductsFilter from '../components/ProductsFilter';
 import SiteHeader from "../components/SiteHeader"
 import BreadCrumbs from '../components/BreadCrumbs';
 import PageTitle from '../components/PageTitle';
 import ProductsList from '../components/ProductsList';
 import SiteFooter from '../components/SiteFooter';
+import Paginator from '../components/Paginator'
 
-const Productos = props => {
+import { getProducts } from "../api";
 
-  const [products, setProducts] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+
+const Productos = () => {
+
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    getProducts()
+    .then(resp => resp.json())
+    .then(resp => setProducts(resp))
+  }, [])
 
   return (
     <div>
@@ -16,14 +26,11 @@ const Productos = props => {
       <BreadCrumbs />
       <PageTitle title="PRODUCTOS"/> 
       <ProductsFilter />
-      {/* <ProductsList products={ products } /> */}
+      <ProductsList products={ products } />
+      <Paginator />
       <SiteFooter />
     </div>
   )
-}
-
-Productos.propTypes = {
-
 }
 
 export default Productos
