@@ -36,7 +36,7 @@ const Login = () => {
             <div>
               <label>
                 Contraseña
-                <input type="text" />
+                <input type="password" />
               </label>
             </div>
             <div className="conatiner-button">
