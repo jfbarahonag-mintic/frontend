@@ -5,11 +5,14 @@ const ProductsList = ({products, h2}) => {
   return (
     <section className="products-list box">
       <div className="box__container">
-        { h2 ? <h2 className="products-list__title sub-title">PRODUCTOS</h2> : '' }
+        { h2 ? <h2 className="products-list__title sub-title">{ h2 }</h2> : '' }
         <div className="products-list__grid">
           {
             products.map(product => {
-              return <ProductCard key={ product._id } />
+              return <ProductCard 
+                key={ product._id } 
+                { ...product }
+              />
             })
           }
         </div>

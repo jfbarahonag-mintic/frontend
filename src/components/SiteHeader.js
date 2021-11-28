@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SiteNav from './SiteNav'
-import useMediaQuery from './MediaQuery'
+import useMediaQuery from '../hooks/useMediaQuery'
 
 import './SiteHeader.css'
 import SiteLogo from '../assets/cellphone.svg'
@@ -38,7 +38,7 @@ function SiteHeader() {
                             {/* <SearchBox /> */}
                             
                             <div className="User">
-                                <Link to="login">
+                                <Link to="/login">
                                     <img src={ AccountIcon } alt="User icon" />
                                 </Link>
                             </div>
