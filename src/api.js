@@ -12,8 +12,16 @@ const getProductsByCategory = (id) => {
   return fetch(`${url}products/category/${id}`)
 }
 
+// Categories
+const getCategories = () => {
+  return fetch(`${url}categories/`)
+}
+
 module.exports = {
+  // products
   getProducts,
   getProductBySlug,
-  getProductsByCategory
+  getProductsByCategory,
+  // categories
+  getCategories
 }

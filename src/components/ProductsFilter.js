@@ -1,28 +1,22 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { getCategories } from '../api';
 import './ProductsFilter.css'
 
 const ProductsFilter = props => {
 
+  const [categories, setCategories] = useState([])
   const [showOrderBy, setShowOrderBy] = useState(false)
   const [showCategories, setShowCategories] = useState(false)
 
+  useEffect(() => {
+    getCategories()
+    .then(resp => resp.json())
+    .then(data => setCategories(data))
+  }, [])
+
   // ESTE SE SUPONE QUE LO IMPORTO
   const SearchBox = () => <div className="search-box">Buscar...</div>;
-
-  const categories = [
-    {
-      name: 'Categoría 1',
-      href: '/',
-    },
-    {
-      name: 'Categoría 2',
-      href: '/',
-    },
-    {
-      name: 'Categoría 3',
-      href: '/',
-    },
-  ];
 
   const orderByOptions = [
     {
@@ -80,7 +74,11 @@ const ProductsFilter = props => {
   const CategoryItems = categories.map((c) => {
     return (
       <li key={ c.name } className="categories-menu__item">
-        <a className="categories-menu__link" href={c.href}>{c.name}</a>
+        <Link 
+          className="categories-menu__link" 
+          to={ "/categorias/" + c.slug}>
+            {c.name}
+        </Link>
       </li>
     );
   });
