@@ -1,0 +1,29 @@
+.contact {
+
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form__submit {
+    max-width: 60px;
+    min-width: 60px;
+    align-self: center;
+    margin-top: 20px;
+    padding: 1rem;
+    background: none;
+    background-color: rgba(20, 20, 255, 0.733);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#name, #email {
+}
+
+#message {
+    min-height: 100px;
+    font-size: medium;
+}
