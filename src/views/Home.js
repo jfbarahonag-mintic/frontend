@@ -1,6 +1,5 @@
 import { useState } from "react";
-import SiteHeader from "../components/SiteHeader";
-import SiteFooter from "../components/SiteFooter";
+import WebLayout from "../layouts/WebLayout";
 import CoverSlider from "../components/CoverSlider";
 import ProductsList from "../components/ProductsList";
 
@@ -9,7 +8,7 @@ import { getProducts } from "../api";
 import './Home.css'
 import { useEffect } from "react";
 
-  
+
 const SliderImages = [
   {
     id: "1",
@@ -63,16 +62,14 @@ const Home = () => {
   }, [])
 
   return (
-    <>
-      <SiteHeader />
+    <WebLayout>
       <CoverSlider images={SliderImages} />
       <ProductsList 
         products={ products } 
         h2="PRODUCTOS"
       />
       <HomeDescription />
-      <SiteFooter />
-    </>
+    </WebLayout>
   )
 }
 
