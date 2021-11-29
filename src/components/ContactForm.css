@@ -20,10 +20,11 @@
     cursor: pointer;
 }
 
-#name, #email {
-}
+/* #name, #email {
+} */
 
 #message {
     min-height: 100px;
+    resize: vertical;
     font-size: medium;
 }
