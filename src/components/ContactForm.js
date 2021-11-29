@@ -21,6 +21,12 @@ const ContactForm = () => {
 
   const form = useRef();
 
+  const cleanFormFields = () => {
+    setName('')
+    setEmail('')
+    setMessage('')
+  }
+
   const onSendMessage = (e) => {
     e.preventDefault();
     setIdle(true);
@@ -38,6 +44,7 @@ const ContactForm = () => {
             console.log(response);
             setSent(true)
             setLoading(false);
+            cleanFormFields()
           },
           (err) => {
             console.log(err.text);
@@ -88,8 +95,14 @@ const ContactForm = () => {
       <div>
         {!!idle}
         {loading && <div className="loader"></div>}
-        {!idle && !!sent && !loading && <div className="text sent">Mensaje enviado</div>}
-        {!idle && !sent && !loading && <div className="text not-sent">Error enviando el mensaje</div>}
+        {!idle && !!sent && !loading && (
+          <div className="text sent">Mensaje enviado</div>
+        )}
+        {!idle && !sent && !loading && (
+          <div className="text not-sent">
+            Error enviando el mensaje. Inténtalo una vez mas
+          </div>
+        )}
       </div>
     </div>
   );
