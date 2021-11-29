@@ -18,6 +18,7 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="productos" element={<Productos />} />
         <Route path="productos/:slug" element={<Producto />} />
