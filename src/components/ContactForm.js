@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
-import emailjs, { init } from 'emailjs-com'
+import React, { useEffect, useRef, useState } from "react";
+import emailjs, { init } from "emailjs-com";
 
-import './ContactForm.css'
+import "./ContactForm.css";
 
 const EMAILJS = {
   //TODO: Change credentials to PhoneBox account and hide them
@@ -11,15 +11,20 @@ const EMAILJS = {
 };
 
 const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const form = useRef()
-  
-  const onSendMessage = e => {
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [idle, setIdle] = useState(true);
+
+  const form = useRef();
+
+  const onSendMessage = (e) => {
     e.preventDefault();
-    if (email !== '' && name !== '' && message !== '') {
+    setIdle(true);
+    if (email !== "" && name !== "" && message !== "") {
       init(EMAILJS.user_id);
       emailjs
         .sendForm(
@@ -27,26 +32,29 @@ const ContactForm = () => {
           EMAILJS.template_id,
           form.current,
           EMAILJS.user_id
-        ).then(
+        )
+        .then(
           (response) => {
             console.log(response);
+            setSent(true)
+            setLoading(false);
           },
           (err) => {
             console.log(err.text);
+            setSent(false)
+            setLoading(false);
           }
         );
+      setLoading(true);
+      setIdle(false)
     } else {
       /* ERROR: Should never reach this point */
     }
-  }
+  };
 
   return (
     <div className="contact">
-      <form
-        ref={form}
-        className="contact-form"
-        onSubmit={onSendMessage}
-      >
+      <form ref={form} className="contact-form" onSubmit={onSendMessage}>
         <label htmlFor="name">Nombre:</label>
         <input
           name="from_name"
@@ -54,7 +62,7 @@ const ContactForm = () => {
           id="name"
           required
           value={name}
-          onChange={e => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
         />
         <label htmlFor="email">Correo:</label>
         <input
@@ -63,7 +71,7 @@ const ContactForm = () => {
           id="email"
           required
           value={email}
-          onChange={(e => setEmail(e.target.value))}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <label htmlFor="message">Mensaje:</label>
         <textarea
@@ -71,17 +79,20 @@ const ContactForm = () => {
           id="message"
           required
           value={message}
-          onChange={e => setMessage(e.target.value)}
+          onChange={(e) => setMessage(e.target.value)}
         />
-        <button
-          className='contact-form__submit'
-          type="submit"
-        >
+        <button className="contact-form__submit" type="submit">
           Enviar
         </button>
       </form>
+      <div>
+        {!!idle}
+        {loading && <div className="loader"></div>}
+        {!idle && !!sent && !loading && <div className="text sent">Mensaje enviado</div>}
+        {!idle && !sent && !loading && <div className="text not-sent">Error enviando el mensaje</div>}
+      </div>
     </div>
   );
-}
+};
 
-export default ContactForm
+export default ContactForm;
