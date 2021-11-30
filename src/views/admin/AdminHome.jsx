@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const AdminHome = () => {
+
+  const [title, setTitle] = useState('Admin')
+  
   return (
     <div>
       <h1>Admin Home</h1>
