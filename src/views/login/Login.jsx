@@ -3,8 +3,10 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../../auth/authContext";
 import { types } from "../../types/types";
 import "./Login.css";
-import imgLogin from "../../assets/Login.jpg";
+// import imgLogin from "../../assets/Login.jpg";
+
 const Login = () => {
+
   const navigate = useNavigate();
   const { user, dispatch } = useContext(AuthContext);
 
@@ -21,33 +23,45 @@ const Login = () => {
     navigate("/admin");
   };
 
+  const LoginForm = () => {
+    return (
+      <div className="login-form">
+        <h1 className="login-form__title">Acceder</h1>
+        <form action="">
+          <div>
+            <label>
+              Correo
+              <input type="text" />
+            </label>
+          </div>
+          <div>
+            <label>
+              Contraseña
+              <input type="password" />
+            </label>
+          </div>
+          <div className="conatiner-button">
+            <button className="login-form__button" onClick={handleLogin}>Acceder</button>
+          </div>
+        </form>
+      </div>
+    )
+  }
+
   return (
-    <div className="container">
-      <div className="container-content">
-        <div className="container-form">
-          <h1 className="container-form__title">Acceder</h1>
-          <form action="">
-            <div>
-              <label>
-                Correo
-                <input type="text" />
-              </label>
-            </div>
-            <div>
-              <label>
-                Contraseña
-                <input type="password" />
-              </label>
-            </div>
-            <div className="conatiner-button">
-              <button className="container-button__form" onClick={handleLogin}>Acceder</button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div className="container-img">
-        <img src={imgLogin} alt="" />
-      </div>
+    <div className="login-page">
+      <section className="login-page__col1">
+
+        <LoginForm />
+
+      </section>
+      <section className="login-page__col2">
+        {/* <img src={imgLogin} alt="" /> */}
+        <div 
+          className="img"
+          style={{ backgroundImage: "url(/images/login/login-background.jpg)" }}
+        ></div>
+      </section>
     </div>
   );
 };
