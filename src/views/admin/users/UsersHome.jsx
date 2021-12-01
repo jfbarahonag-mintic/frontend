@@ -1,9 +1,13 @@
 import React from 'react'
 
+import { Card } from '../../../components/admin/Card'
+
 const Home = () => {
   return (
-    <div>
-      <h1>Users</h1>
+    <div className="users">
+      <Card>
+        
+      </Card>
     </div>
   )
 }
