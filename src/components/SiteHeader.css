@@ -1,6 +1,6 @@
-* {
+/* * {
     border: 1px solid #ffed00;
-}
+} */
 
 .site-header {
     position: relative;
@@ -45,6 +45,7 @@
     padding: 4px;
     box-sizing: border-box;
     cursor: pointer;
+    margin-left: 30px;
 }
 
 .responsive-button__line {

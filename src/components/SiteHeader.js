@@ -5,6 +5,7 @@ import useMediaQuery from './MediaQuery'
 import './SiteHeader.css'
 import SiteLogo from '../assets/cellphone.svg'
 import AccountIcon from '../assets/account.svg'
+import SearchBox  from './SearchBox'
 
 
 function SiteHeader() {
@@ -12,7 +13,7 @@ function SiteHeader() {
     const [showMobileMenu, setShowMobileMenu] = useState(false)
 
     let isPageWide = useMediaQuery('(min-width: 768px)')
-
+    
     const toggleMobileMenu = () => {
         setShowMobileMenu(!showMobileMenu)
     }
@@ -20,7 +21,6 @@ function SiteHeader() {
     return (
         <header className="site-header">
             <div className="site-header__container">
-
                 <div className="site-header__box">
                     <img
                         className="site-header__logo"
@@ -34,14 +34,14 @@ function SiteHeader() {
                 { 
                     isPageWide ?
                         <>
-                            {/* <SearchBox /> */}
-                            
+                            <SearchBox />
                             <div className="User">
                                 <img src={ AccountIcon } alt="User icon" />
                             </div>
                         </>
                     :
                         <> 
+                            <SearchBox isPageWide={ isPageWide } />
                             <div onClick={ toggleMobileMenu } 
                                 className='responsive-button'>
                                 <div className='responsive-button__line'></div>
