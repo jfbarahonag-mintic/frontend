@@ -17,9 +17,9 @@ function CustomTable({ titles, rows }) {
         <TableHead>
           <TableRow>
             {titles.map((title, idx) => (
-              <TableCell align="justify" key={title}>
+              <TableCell align="center" key={title} style={{fontWeight: 'bold'}}>
                 {title}
-                {/*&nbsp;*/}
+                {/* &nbsp; */}
               </TableCell>
             ))}
           </TableRow>
@@ -29,8 +29,9 @@ function CustomTable({ titles, rows }) {
             <TableRow key={idx}>
               {Object.values(row).map(
                 (value, idx /* iterate by values of each object */) => (
-                  <TableCell key={value} align="justify">
+                  <TableCell key={value} align="center">
                     {value}
+                    {/* &nbsp; */}
                   </TableCell>
                 )
               )}

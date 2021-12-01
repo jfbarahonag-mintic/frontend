@@ -16,7 +16,19 @@ const users = [
     role: 'role',
   },
   {
-    status: 'active',
+    status: 'inactive',
+    nombre: 'Juan Perez',
+    email: 'mail@example.com',
+    role: 'role',
+  },
+  {
+    status: 'inactive',
+    nombre: 'Juan Perez',
+    email: 'mail@example.com',
+    role: 'role',
+  },
+  {
+    status: 'inactive',
     nombre: 'Juan Perez',
     email: 'mail@example.com',
     role: 'role',
