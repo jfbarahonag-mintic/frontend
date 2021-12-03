@@ -1,48 +1,26 @@
 import React from "react";
+import Button from "@mui/material/Button";
+import { Box } from "@mui/system";
 
 import { CustomTable } from './CustomTable'
 
-const users = [
-  {
-    status: 'active',
-    nombre: 'Juan Perez',
-    email: 'mail@example.com',
-    role: 'role',
-  },
-  {
-    status: 'active',
-    nombre: 'Juan Perez',
-    email: 'mail@example.com',
-    role: 'role',
-  },
-  {
-    status: 'inactive',
-    nombre: 'Juan Perez',
-    email: 'mail@example.com',
-    role: 'role',
-  },
-  {
-    status: 'inactive',
-    nombre: 'Juan Perez',
-    email: 'mail@example.com',
-    role: 'role',
-  },
-  {
-    status: 'inactive',
-    nombre: 'Juan Perez',
-    email: 'mail@example.com',
-    role: 'role',
-  },
-]
-
 //TODO: Rename this Component
-function Card({ children }) {
-  const columns = ['Status', 'Nombre', 'Email', 'Rol']
+function Card({ type, titles, rows }) {
   return (
-    <div style={{color: 'red'}}>
+    <div style={{ padding: "1rem" }}>
+      <Box
+        display='flex'
+        justifyContent='flex-end'
+        mb='1rem'>
+        <Button
+          variant="contained"
+        >
+          {`Crear ${type}`}
+        </Button>
+      </Box>
       <CustomTable
-        titles={columns}
-        rows={users}
+        titles={titles}
+        rows={rows}
       />
     </div>
   );
