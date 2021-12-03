@@ -36,6 +36,15 @@ const FormModal = React.forwardRef((props, ref) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    
+    //TODO: check if email (and password?) was already registered
+    
+    if (pswd !== repeatPswd)
+    {
+      return
+    }
+
+    //all ok
     console.log(name);
     console.log(role);
     console.log(email);
