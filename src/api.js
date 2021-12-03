@@ -21,6 +21,20 @@ const getUsers = () => {
   return fetch(`${url}users/`)
 }
 
+const postUser = (data = {}) => {
+  return fetch(`${url}users/add`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  //TODO: Check this
+    //.then(res => res.json())
+    //.catch(error => console.error('Error:', error))
+    //.then(response => console.log('Success:', response));
+}
+
 module.exports = {
   // products
   getProducts,
@@ -30,4 +44,5 @@ module.exports = {
   getCategories,
   // users
   getUsers,
+  postUser,
 }
