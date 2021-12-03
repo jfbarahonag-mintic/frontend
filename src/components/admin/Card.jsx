@@ -7,6 +7,49 @@ import { Typography } from "@mui/material";
 
 import { TableUsers } from "./TableUsers";
 
+const FormModal = React.forwardRef((props, ref) => {
+  
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
+
+  const style = {
+    position: "absolute",
+    width: 400,
+
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+    backgroundColor: 'white'
+  };
+
+  React.useImperativeHandle(ref, () => ({
+    handleOpen: (open) => {
+      setOpen(open);
+    },
+  }));
+
+  return (
+    <Modal
+      style={{display:'flex', alignItems:'center', justifyContent:'center'}}
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <div>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </div>
+      </Box>
+    </Modal>
+  );
+});
+
 //TODO: Rename this Component
 function Card({ type, titles, rows }) {
   const formModalRef = React.useRef();
@@ -27,61 +70,5 @@ function Card({ type, titles, rows }) {
     </div>
   );
 }
-
-const FormModal = React.forwardRef((props, ref) => {
-  
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => setOpen(false);
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: '100%',
-    height: '90%',
-    bgcolor: "white",
-    // border: "2px solid #000",
-    // boxShadow: 24,
-    // p: 4,
-  };
-
-  React.useImperativeHandle(ref, () => ({
-    handleOpen: (open) => {
-      setOpen(open);
-    },
-  }));
-
-  return (
-    <Modal
-      style={style}
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box component="form" display="flex" flexDirection="column" color="white">
-        <TextField
-          required
-          id="outlined-required"
-          label="Required"
-          defaultValue="Hello World"
-        />
-        <TextField
-          disabled
-          id="outlined-disabled"
-          label="Disabled"
-          defaultValue="Hello World"
-        />
-        <TextField
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-        />
-      </Box>
-    </Modal>
-  );
-});
 
 export { Card };
