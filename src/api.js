@@ -17,11 +17,17 @@ const getCategories = () => {
   return fetch(`${url}categories/`)
 }
 
+const getUsers = () => {
+  return fetch(`${url}users/`)
+}
+
 module.exports = {
   // products
   getProducts,
   getProductBySlug,
   getProductsByCategory,
   // categories
-  getCategories
+  getCategories,
+  // users
+  getUsers,
 }

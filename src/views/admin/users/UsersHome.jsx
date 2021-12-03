@@ -2,48 +2,29 @@ import React from 'react'
 
 import { Card } from '../../../components/admin/Card'
 
-const columns = ["Status", "Nombre", "Email", "Rol"];
-const users = [
-  {
-    status: "active",
-    nombre: "Juan Perez",
-    email: "mail@example.com",
-    role: "role",
-  },
-  {
-    status: "active",
-    nombre: "Juan Perez",
-    email: "mail@example.com",
-    role: "role",
-  },
-  {
-    status: "inactive",
-    nombre: "Juan Perez",
-    email: "mail@example.com",
-    role: "role",
-  },
-  {
-    status: "inactive",
-    nombre: "Juan Perez",
-    email: "mail@example.com",
-    role: "role",
-  },
-  {
-    status: "inactive",
-    nombre: "Juan Perez",
-    email: "mail@example.com",
-    role: "role",
-  },
-];
+import { getUsers } from "../../../api";
 
+const titles = ['Status', 'Nombre', 'Email', 'Rol']
 const Home = () => {
+  const [users, setUsers] = React.useState([]);
+
+  React.useEffect(() => {
+    getUsers()
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setUsers(resp);
+      });
+  }, []);
+
   return (
     <div className="users">
       <Card
         type='usuario'
-        titles={columns}
+        titles={titles}
         rows={users}
-      />
+      >
+        
+      </Card>
     </div>
   )
 }
