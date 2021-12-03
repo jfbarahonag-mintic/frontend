@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { Box } from "@mui/system";
-import { Modal } from "@mui/material";
+import { Modal, TextField } from "@mui/material";
 import { Form } from "@mui/material";
 import { Typography } from "@mui/material";
 
@@ -33,9 +33,18 @@ const FormModal = React.forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
 
-  // React.useEffect(() => {
-  //   console.log(2);
-  // }, [open])
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: '100%',
+    height: '90%',
+    bgcolor: "white",
+    // border: "2px solid #000",
+    // boxShadow: 24,
+    // p: 4,
+  };
 
   React.useImperativeHandle(ref, () => ({
     handleOpen: (open) => {
@@ -44,10 +53,33 @@ const FormModal = React.forwardRef((props, ref) => {
   }));
 
   return (
-    <Modal open={open} onClose={handleClose}>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-        Text in a modal
-      </Typography>
+    <Modal
+      style={style}
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box component="form" display="flex" flexDirection="column" color="white">
+        <TextField
+          required
+          id="outlined-required"
+          label="Required"
+          defaultValue="Hello World"
+        />
+        <TextField
+          disabled
+          id="outlined-disabled"
+          label="Disabled"
+          defaultValue="Hello World"
+        />
+        <TextField
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+        />
+      </Box>
     </Modal>
   );
 });
