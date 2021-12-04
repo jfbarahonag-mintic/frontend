@@ -2,25 +2,28 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { Box } from "@mui/system";
 import { Modal, TextField } from "@mui/material";
-import { Form } from "@mui/material";
-import { Typography } from "@mui/material";
 import { Select } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import Alert from "@mui/material/Alert";
 
 import { TableUsers } from "./TableUsers";
+import { postUser } from "../../api"
 
 
 const FormModal = React.forwardRef((props, ref) => {
-  
+
   const flags = {
     none: 0,
     empty: 1,
     mismatch: 2,
     alreadyRegistered: 3,
-    pswdUsed: 4,
   };
+
+  const stat = {
+    inactive: 0,
+    active: 1,
+  }
   
   const [open, setOpen]             = React.useState(false);
   const [name, setName]             = React.useState("");
@@ -28,6 +31,7 @@ const FormModal = React.forwardRef((props, ref) => {
   const [email, setEmail]           = React.useState("");
   const [pswd, setPswd]             = React.useState("");
   const [repeatPswd, setRepeatPswd] = React.useState("");
+  const [status, setStatus] = React.useState(stat.active);
   const [errors, setErrors] = React.useState(flags.none);
   const [alert, setAlert] = React.useState(false);
 
@@ -45,13 +49,16 @@ const FormModal = React.forwardRef((props, ref) => {
   const handleChangeRole = (e) => {
     setRole(e.target.value)
   }
+  
+  const handleChangeStatus = (e) => {
+    setStatus(e.target.value)
+  }
 
   const handleSeverity = () => {
     switch (errors) {
       case flags.none:
         return 'success'
       case flags.alreadyRegistered:
-      case flags.pswdUsed:
       case flags.empty:
       case flags.mismatch:
         return 'error'
@@ -65,8 +72,7 @@ const FormModal = React.forwardRef((props, ref) => {
     if (errors === flags.none) return `Usuario registrado`
     else if(errors === flags.empty) return `Hay campos vacíos`
     else if(errors === flags.mismatch) return `Contraseña no coincide`
-    else if(errors === flags.pswdUsed) return `Contraseña en uso`
-    else if(errors === flags.alreadyRegistered) return `Usuario existente`
+    else if(errors === flags.alreadyRegistered) return `El usuario ya existe`
   }
 
   const handleSubmit = (e) => {
@@ -87,13 +93,25 @@ const FormModal = React.forwardRef((props, ref) => {
       setErrors(flags.mismatch)
       return
     }
-    setErrors(flags.none)
     //all ok
-    console.log(name);
-    console.log(role);
-    console.log(email);
-    console.log(pswd);
-    console.log(repeatPswd);
+    const data = {
+      name,
+      email,
+      password: pswd,
+      status,
+      role,
+    };
+
+    postUser(data)
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'El usuario ya existe.') {
+          setErrors(flags.alreadyRegistered)
+        }
+        else {
+          setErrors(flags.none)
+        }
+      })
   }
 
   React.useImperativeHandle(ref, () => ({
@@ -144,6 +162,18 @@ const FormModal = React.forwardRef((props, ref) => {
           >
             <MenuItem value={`admin`}>Admin</MenuItem>
             <MenuItem value={`editor`}>Editor</MenuItem>
+          </Select>
+          
+          <InputLabel>Status</InputLabel>
+          <Select
+            labelId="status"
+            id="status"
+            value={status}
+            label="Status"
+            onChange={handleChangeStatus}
+          >
+            <MenuItem value={stat.active}>Activo</MenuItem>
+            <MenuItem value={stat.inactive}>Inactivo</MenuItem>
           </Select>
 
           <TextField
