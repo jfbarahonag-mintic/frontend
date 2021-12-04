@@ -5,7 +5,7 @@ import { Modal, TextField } from "@mui/material";
 import { Select } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import { MenuItem } from "@mui/material";
-import Alert from "@mui/material/Alert";
+import { Alert } from "@mui/material";
 
 import { TableUsers } from "./TableUsers";
 import { postUser } from "../../api"
@@ -110,6 +110,7 @@ const FormModal = React.forwardRef((props, ref) => {
         }
         else {
           setErrors(flags.none)
+          window.location.reload(false);
         }
       })
   }
@@ -224,15 +225,15 @@ const FormModal = React.forwardRef((props, ref) => {
 
 //TODO: Rename this Component
 function Card({ type, titles, rows }) {
-  const formModalRef = React.useRef();
+  const addModalRef = React.useRef();
 
   const handleClick = () => {
-    formModalRef.current.handleOpen(true);
+    addModalRef.current.handleOpen(true);
   };
 
   return (
     <div style={{ padding: "1rem" }}>
-      <FormModal ref={formModalRef} />
+      <FormModal ref={addModalRef} />
       <Box display="flex" justifyContent="flex-end" mb="1rem">
         <Button variant="contained" onClick={handleClick}>
           {`Crear ${type}`}

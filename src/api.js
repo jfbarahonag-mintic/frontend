@@ -35,6 +35,16 @@ const postUser = (data = {}) => {
     //.then(response => console.log('Success:', response));
 }
 
+const updateUser = (data = {}, id="") => {
+  return fetch(`${url}users/update/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
+
 module.exports = {
   // products
   getProducts,
@@ -45,4 +55,5 @@ module.exports = {
   // users
   getUsers,
   postUser,
+  updateUser,
 }
