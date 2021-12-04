@@ -21,7 +21,9 @@ const ProductsTableRow = ({ row }) => {
       </TableCell>
       <TableCell align="center">{row.category_id} </TableCell>
       <TableCell align="center">{row.name} </TableCell>
-      <TableCell align="center">{row.price} </TableCell>
+      <TableCell align="center">
+        {row.price ? `$ ${row.price.toLocaleString("es-ES")}` : "-"}
+      </TableCell>
       <TableCell align="center">
         <Link to={`/admin/products/edit/${row._id}`}>
           <IconButton style={{ cursor: "pointer" }}>
@@ -39,7 +41,7 @@ const ProductsTableRow = ({ row }) => {
     </TableRow>
   );
 };
-function TableProducts({ titles, rows }) {
+function ProductsTable({ titles, rows }) {
   const [content, setContent] = React.useState(rows || []);
 
   React.useEffect(() => {
@@ -81,4 +83,4 @@ function TableProducts({ titles, rows }) {
   );
 }
 
-export { TableProducts };
+export { ProductsTable };
