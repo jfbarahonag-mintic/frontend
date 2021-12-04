@@ -7,10 +7,20 @@ import { Typography } from "@mui/material";
 import { Select } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import { MenuItem } from "@mui/material";
+import Alert from "@mui/material/Alert";
 
 import { TableUsers } from "./TableUsers";
 
+
 const FormModal = React.forwardRef((props, ref) => {
+  
+  const flags = {
+    none: 0,
+    empty: 1,
+    mismatch: 2,
+    alreadyRegistered: 3,
+    pswdUsed: 4,
+  };
   
   const [open, setOpen]             = React.useState(false);
   const [name, setName]             = React.useState("");
@@ -18,6 +28,8 @@ const FormModal = React.forwardRef((props, ref) => {
   const [email, setEmail]           = React.useState("");
   const [pswd, setPswd]             = React.useState("");
   const [repeatPswd, setRepeatPswd] = React.useState("");
+  const [errors, setErrors] = React.useState(flags.none);
+  const [alert, setAlert] = React.useState(false);
 
   const boxStyle = {
     position: "absolute",
@@ -34,16 +46,48 @@ const FormModal = React.forwardRef((props, ref) => {
     setRole(e.target.value)
   }
 
+  const handleSeverity = () => {
+    switch (errors) {
+      case flags.none:
+        return 'success'
+      case flags.alreadyRegistered:
+      case flags.pswdUsed:
+      case flags.empty:
+      case flags.mismatch:
+        return 'error'
+    
+      default:
+        return 'warning'
+    }
+  }
+
+  const handleMessage = () => {
+    if (errors === flags.none) return `Usuario registrado`
+    else if(errors === flags.empty) return `Hay campos vacíos`
+    else if(errors === flags.mismatch) return `Contraseña no coincide`
+    else if(errors === flags.pswdUsed) return `Contraseña en uso`
+    else if(errors === flags.alreadyRegistered) return `Usuario existente`
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    
+    setAlert(true)
     //TODO: check if email (and password?) was already registered
+    
+    if (name === '' || email === '' ||
+      role === '' || pswd === '' ||
+      repeatPswd === '')
+    {
+      setErrors(flags.empty)
+      return
+    }
     
     if (pswd !== repeatPswd)
     {
+      setErrors(flags.mismatch)
       return
     }
-
+    setErrors(flags.none)
     //all ok
     console.log(name);
     console.log(role);
@@ -134,6 +178,11 @@ const FormModal = React.forwardRef((props, ref) => {
               setRepeatPswd(e.target.value);
             }}
           />
+          {alert === true && (
+            <Alert severity={handleSeverity()} style={{marginBottom:'10px'}}>
+              {handleMessage()}
+            </Alert>
+          )}
           <Button variant="contained" type="submit">
             Crear
           </Button>
