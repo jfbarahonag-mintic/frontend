@@ -82,7 +82,7 @@ function ResponsiveDrawer(props) {
       </List>
       <Divider />
       <List>
-        {<SideBarLink 
+        {<SideBarLink
           name="Sitio Web"
           path="/"
           icon={ <WebIcon /> }

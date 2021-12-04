@@ -34,7 +34,7 @@ const DashboardRouter = () => {
 
         <Route path="/products" element={ <ProductsHome /> } />
         <Route path="/products/create" element={ <ProductCreate /> } />
-        <Route path="/products/edit" element={ <ProductEdit /> } />
+        <Route path="/products/edit/:id" element={ <ProductEdit /> } />
         <Route path="/products/show" element={ <ProductShow /> } />
 
         <Route path="/categories" element={ <CategoriesHome /> } />
