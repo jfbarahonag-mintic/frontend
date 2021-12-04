@@ -19,7 +19,7 @@ const ProductsTableRow = ({ row }) => {
       <TableCell align="center">
         <CircleIcon color={row.status === "activo" ? "success" : "error"} />
       </TableCell>
-      <TableCell align="center">Categoria </TableCell>
+      <TableCell align="center">{row.category_id} </TableCell>
       <TableCell align="center">{row.name} </TableCell>
       <TableCell align="center">{row.price} </TableCell>
       <TableCell align="center">
@@ -55,7 +55,7 @@ function TableProducts({ titles, rows }) {
           </Button>
         </Link>
       </Box>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ overflowX: "auto" }}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
