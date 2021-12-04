@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-import { TableProducts } from "../../../components/admin/TableProducts";
+import { ProductsTable } from "../../../components/admin/ProductsTable";
 import { getProducts } from "../../../api";
 import { useEffect } from "react";
 
@@ -20,7 +20,7 @@ function Home({ children }) {
   const columns = ["Status", "Categorias", "Nombre", "Precio", "", ""];
   return (
     <div style={{ color: "red" }}>
-      <TableProducts titles={columns} rows={products} />
+      <ProductsTable titles={columns} rows={products} />
     </div>
   );
 }
