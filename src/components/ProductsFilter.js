@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCategories } from '../api';
-// import { setCategories } from "../actions/data"
+// import { getCategories } from '../api';
+import { setCategories } from "../actions/data"
 import './ProductsFilter.css'
 
 const ProductsFilter = props => {
@@ -10,20 +10,19 @@ const ProductsFilter = props => {
   const [categories, setCategories] = useState([])
   const [showOrderBy, setShowOrderBy] = useState(false)
   const [showCategories, setShowCategories] = useState(false)
-
-  // const categories = useSelector(state => state.data.categories)
-  // const dispatch = useDispatch()
-
+  
   useEffect(() => {
-    // console.log(categories)
-    // let localCategories = [...data.categories]
-    // localCategories[0].name = "gbfedsbdsfg"
-    // console.log(localCategories)
-    // setCategories([...data.categories])
-    getCategories()
-    .then(resp => resp.json())
-    .then(data => setCategories(data))
+    // getCategories()
+    // .then(resp => resp.json())
+    // .then(data => setCategories(data))
   }, [])
+  
+  const data = useSelector(state => state.data)
+  
+  useEffect(() => {
+    if (data?.categories) setCategories(data.categories) 
+  }, [data])
+
 
   // ESTE SE SUPONE QUE LO IMPORTO
   const SearchBox = () => <div className="search-box">Buscar...</div>;
