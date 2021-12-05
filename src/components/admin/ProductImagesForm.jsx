@@ -3,7 +3,7 @@ import { Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { Carousel } from "infinite-react-carousel";
+import ClearIcon from "@mui/icons-material/Clear";
 import { Box } from "@mui/system";
 
 //firebase
@@ -13,6 +13,38 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const Input = styled("input")({
   display: "none",
 });
+
+const ImagesFilesAsArray = ({ imagesAsFiles, setImagesAsFiles }) => {
+
+  const handleClearImage = (e) => {
+    console.log(e.target.id);
+
+    const target = e.target.id;
+    imagesAsFiles.splice(target, 1);
+
+    setImagesAsFiles(imagesAsFiles);
+  };
+
+  if (imagesAsFiles.length > 0) {
+    return imagesAsFiles.map((image, idx) => (
+      <span style={{ display: "inline-flex", margin: "1rem" }}>
+        <img
+          style={{ height: "300px", width: "auto" }}
+          src={URL.createObjectURL(image)}
+          alt={image.name}
+        />
+        <Button
+          style={{ display: "contents" }}
+          onClick={handleClearImage}
+          id={idx}
+        >
+          x
+        </Button>
+      </span>
+    ));
+  }
+  return <span></span>;
+};
 
 const ProductImagesForm = (handleSendImages) => {
   const allInputs = [];
@@ -63,22 +95,13 @@ const ProductImagesForm = (handleSendImages) => {
         >
           <PhotoCamera />
         </IconButton>
-        <Box>
-          {imagesAsFiles ? (
-            imagesAsFiles.map((image, idx) => (
-              <span key={idx}>
-                <img
-                  style={{ height: "300px", width: "auto", margin: '1rem' }}
-                  src={URL.createObjectURL(image)}
-                  alt={image.name}
-                />
-              </span>
-            ))
-          ) : (
-            <span></span>
-          )}
-        </Box>
       </label>
+      <Box component="div" sx={{ overflow: "auto", whiteSpace: "nowrap" }}>
+        <ImagesFilesAsArray
+          imagesAsFiles={imagesAsFiles}
+          setImagesAsFiles={setImagesAsFiles}
+        />
+      </Box>
       {/* </form> */}
     </div>
   );
