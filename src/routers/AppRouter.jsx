@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from '../views/Home';
@@ -15,6 +15,7 @@ import PrivateRouter from './PrivateRouter';
 import PublicRouter from './PublicRouter';
 
 const AppRouter = () => {
+
   return (
     <BrowserRouter>
       <Routes>
