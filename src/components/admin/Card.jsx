@@ -7,7 +7,7 @@ import { InputLabel } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import { Alert } from "@mui/material";
 
-import { TableUsers } from "./TableUsers";
+import { UsersTable } from "./UsersTable";
 import { postUser } from "../../api"
 
 
@@ -239,7 +239,7 @@ function Card({ type, titles, rows }) {
           {`Crear ${type}`}
         </Button>
       </Box>
-      <TableUsers titles={[...titles, ""]} rows={rows} />
+      <UsersTable titles={[...titles, ""]} rows={rows} />
     </div>
   );
 }

@@ -251,7 +251,7 @@ function UsersTableRow({ row }) {
   );
 }
 
-function TableUsers({ titles, rows }) {
+function UsersTable({ titles, rows }) {
   const [content, setContent] = React.useState(rows || []);
 
   React.useEffect(() => {
@@ -284,4 +284,4 @@ function TableUsers({ titles, rows }) {
   );
 }
 
-export { TableUsers }
+export { UsersTable }
