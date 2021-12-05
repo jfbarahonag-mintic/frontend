@@ -3,6 +3,8 @@ import { Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import { Carousel } from "infinite-react-carousel";
+import { Box } from "@mui/system";
 
 //firebase
 import storage from "../../firebase/firebase";
@@ -46,9 +48,7 @@ const ProductImagesForm = (handleSendImages) => {
     <div>
       <Typography variant="h6">Imágenes:</Typography>
       {/* <form onSubmit={handleUploadToFirebase}> */}
-      <label
-        htmlFor="icon-button-file"
-      >
+      <label htmlFor="icon-button-file">
         <Input
           accept="image/*"
           id="icon-button-file"
@@ -63,15 +63,21 @@ const ProductImagesForm = (handleSendImages) => {
         >
           <PhotoCamera />
         </IconButton>
-        {
-          imagesAsFiles ?
-            imagesAsFiles.map((image, idx) => 
-              <div key={idx}>
-                {image.name}
-              </div>
-            )
-            : <span></span>
-        }
+        <Box>
+          {imagesAsFiles ? (
+            imagesAsFiles.map((image, idx) => (
+              <span key={idx}>
+                <img
+                  style={{ height: "300px", width: "auto", margin: '1rem' }}
+                  src={URL.createObjectURL(image)}
+                  alt={image.name}
+                />
+              </span>
+            ))
+          ) : (
+            <span></span>
+          )}
+        </Box>
       </label>
       {/* </form> */}
     </div>
