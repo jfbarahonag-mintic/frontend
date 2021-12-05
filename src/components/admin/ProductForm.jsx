@@ -11,7 +11,6 @@ const ProductForm = (props) => {
   const [price, setPrice] = useState('')
   const [description, setDescription] = useState('')
   const [features, setFeatures] = useState([])
-  // const [images, setImages] = useState([])
   // const [category_id, setCategory_id] = useState(category_id)
   const [status, setStatus] = useState('')
 
@@ -44,7 +43,7 @@ const ProductForm = (props) => {
       price: price, 
       description: description, 
       features: features, 
-      // images: images, 
+      images: [], 
       // category_id: category_id, 
       status: status
     }

@@ -18,7 +18,27 @@ const Create = () => {
 
   const navigate = useNavigate()
 
-  const handleSubmit = (data) => {
+  const handleSubmit = async (data) => {
+    //1 firebase
+    console.log(`Start upload ${images}`);
+    let tempURLs = []
+
+
+    // check files list
+    if (images.length <= 0) {
+      console.error(`No image was selected`);
+      return;
+    }
+    for (const image of images) {
+      const storageRef = ref(storage, `/images/${image.name}`);
+      //TODO: Add security to prevent repeat multiple images with the same name
+      let snapshot = await uploadBytes(storageRef, image)
+      let url = await getDownloadURL(storageRef)
+      tempURLs.push(url)
+    }
+    data.images = tempURLs
+    console.log('data.images -> ', data.images);
+    //2 mongo
     storeProduct(data)
     .then(resp => {
       if (resp.ok) {
