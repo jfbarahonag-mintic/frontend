@@ -27,6 +27,7 @@ const ImagesFilesAsArray = ({ imagesAsFiles, setImagesAsFiles }) => {
   if (imagesAsFiles.length > 0) {
     return imagesAsFiles.map((image, idx) => (
       <div
+        key={idx}
         style={{
           display: "inline",
           height: "300px",
