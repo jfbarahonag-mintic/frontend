@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import SiteNav from './SiteNav'
+<<<<<<< HEAD
 import useMediaQuery from '../hooks/useMediaQuery'
+=======
+import SearchBox from './SearchBox'
+import useMediaQuery from './MediaQuery'
+>>>>>>> c567e40071c6a045ea2e8226ca93783540aa55c0
 
 import './SiteHeader.css'
 import SiteLogo from '../assets/cellphone.svg'
 import AccountIcon from '../assets/account.svg'
 import { Link } from 'react-router-dom';
+
 
 
 function SiteHeader() {
@@ -34,8 +40,9 @@ function SiteHeader() {
                 <div className="site-header__box">
                 { 
                     isPageWide ?
-                        <>
+                    <>
                             {/* <SearchBox /> */}
+                            <SearchBox/>
                             
                             <div className="User">
                                 <Link to="/login">

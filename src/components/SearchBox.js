@@ -7,7 +7,7 @@ const SearchBox = () => {
         >
         <input type="text"
             className="site-header__search-input"
-            placeholder="Search..."
+            placeholder="Buscar..."
             name="search"
             id="search"
         />
