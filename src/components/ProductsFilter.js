@@ -11,13 +11,9 @@ const ProductsFilter = () => {
   const [categories, setCategories] = useState([])
   const [showOrderBy, setShowOrderBy] = useState(false)
   const [showCategories, setShowCategories] = useState(false)
-<<<<<<< HEAD
   const [isPageWide, setIsPageWide] = useState(Boolean)
   const [searchBoxIsDeployed, setSearchBoxIsDeployed] = useState(false)
 
-=======
-  
->>>>>>> 7678cc3241b8d794eb6f4bef61299d69b9529fcf
   useEffect(() => {
     // getCategories()
     // .then(resp => resp.json())
