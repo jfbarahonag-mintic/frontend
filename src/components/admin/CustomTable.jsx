@@ -6,10 +6,26 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import EditIcon from "@mui/icons-material/Edit";
+import CircleIcon from "@mui/icons-material/Circle";
+
+function setCircleIcon(color) {
+  return <CircleIcon color={ color } />
+}
 
 function CustomTable({ titles, rows }) {
   
   const [content, setContent] = React.useState(rows || []);
+  
+  titles.push('')
+
+  rows = rows.map((row, idx) => {
+    row.edit = <EditIcon id={ idx } style={{cursor: 'pointer'}} />
+  })
+
+  React.useEffect(() => {
+    /* Use it if needed */
+  },[])
 
   return (
     <TableContainer component={Paper}>
@@ -17,7 +33,11 @@ function CustomTable({ titles, rows }) {
         <TableHead>
           <TableRow>
             {titles.map((title, idx) => (
-              <TableCell align="center" key={title} style={{fontWeight: 'bold'}}>
+              <TableCell
+                align="center"
+                key={title}
+                style={{ fontWeight: "bold" }}
+              >
                 {title}
                 {/* &nbsp; */}
               </TableCell>
@@ -30,8 +50,9 @@ function CustomTable({ titles, rows }) {
               {Object.values(row).map(
                 (value, idx /* iterate by values of each object */) => (
                   <TableCell key={value} align="center">
-                    {value}
-                    {/* &nbsp; */}
+                    {value === "active"
+                      ? setCircleIcon("success")
+                      : value === 'inactive' ? setCircleIcon("error") : value}
                   </TableCell>
                 )
               )}

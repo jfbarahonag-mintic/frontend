@@ -8,6 +8,7 @@ import AccountIcon from '../assets/account.svg'
 import { Link } from 'react-router-dom';
 
 
+
 function SiteHeader() {
     
     const [showMobileMenu, setShowMobileMenu] = useState(false)
@@ -34,7 +35,7 @@ function SiteHeader() {
                 <div className="site-header__box">
                 { 
                     isPageWide ?
-                        <>
+                    <>
                             {/* <SearchBox /> */}
                             
                             <div className="User">

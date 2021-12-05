@@ -50,9 +50,9 @@ function ProductsTable({ titles, rows }) {
 
   return (
     <>
-      <Box display="flex" justifyContent="flex-end">
+      <Box display="flex" justifyContent="flex-end" my={2}>
         <Link to={`/admin/products/create`}>
-          <Button variant="contained" style={{ marginBottom: "10px" }}>
+          <Button variant="contained">
             Crear Producto
           </Button>
         </Link>
