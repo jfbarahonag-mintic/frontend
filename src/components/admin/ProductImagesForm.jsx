@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, Fab } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import ClearIcon from "@mui/icons-material/Clear";
 import { Box } from "@mui/system";
 
 const Input = styled("input")({
@@ -27,20 +26,34 @@ const ImagesFilesAsArray = ({ imagesAsFiles, setImagesAsFiles }) => {
 
   if (imagesAsFiles.length > 0) {
     return imagesAsFiles.map((image, idx) => (
-      <span style={{ display: "inline-flex", margin: "1rem" }}>
+      <div
+        style={{
+          display: "inline",
+          height: "300px",
+          position: "relative",
+          margin: "1rem",
+        }}
+      >
         <img
           style={{ height: "300px", width: "auto" }}
           src={URL.createObjectURL(image)}
           alt={image.name}
         />
-        <Button
-          style={{ display: "contents" }}
+        <Fab
+          size="small"
+          style={{
+            position: "absolute",
+            top: "0",
+            right: "0",
+            transform: "translateY(-280px)",
+            backgroundColor: "tomato",
+          }}
           onClick={handleClearImage}
           id={idx}
         >
           x
-        </Button>
-      </span>
+        </Fab>
+      </div>
     ));
   }
   return <span></span>;
