@@ -1,24 +1,26 @@
+/*-------------------------------------------*\
+    SearchBox.css
+\*-------------------------------------------*/
+
 .search-box {
-    width: 100%;
+    /* width: 100%; */
     max-width: 240px;
     height: 48px;
-    border-bottom: 1px solid #ccc;
+    border: 1px solid #ccc;
     box-sizing: content-box;
-} 
+}
 
 .search-box__form {
     display: flex;
-    /* align-items: stretch; */
     height: 100%;
-        
-} 
+}
 
 .search-box__input {
     display: block;
     border: none;
     outline: none;
     height: 46px;
-    padding: 4px;
+    padding: 0 8px;
     box-sizing: border-box;
     font-family: var(--f1);
     font-size: 1.8rem;
@@ -31,16 +33,18 @@
     border: none;
     width: 48px;
     height: 48px;
-
+    cursor: pointer;
 } 
 
-/* .search-box__button-icon{
-
-} */
-
+.search-box__button:focus {
+    outline: none;
+}
 
 /* isCollapsed */
+.search-box--collapsed {
+    border: none;
+}
+
 .search-box--collapsed .search-box__input {
     display: none;
-
 }
