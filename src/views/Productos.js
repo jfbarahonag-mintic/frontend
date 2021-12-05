@@ -12,6 +12,17 @@ import { getProducts } from "../api";
 
 const Productos = () => {
 
+  const BreadcrumbsLinks = [
+    {
+      name: 'Inicio',
+      path: '/'
+    },
+    {
+      name: 'Productos',
+      path: '/productos'
+    },
+  ]
+
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -23,7 +34,7 @@ const Productos = () => {
   return (
     <div>
       <SiteHeader />
-      <BreadCrumbs />
+      <BreadCrumbs links={ BreadcrumbsLinks }/>
       <PageTitle title="PRODUCTOS"/> 
       <ProductsFilter />
       <ProductsList products={ products } />
