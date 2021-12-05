@@ -25,6 +25,21 @@ function Producto() {
     const [relatedProducts, setRelatedProducts] = useState([])
 
     const isPageWide = useMediaQuery('(min-width: 768px)')
+
+    const BreadcrumbsLinks = [
+        {
+            name: 'Inicio',
+            path: '/'
+        },
+        {
+            name: 'Productos',
+            path: '/productos'
+        },
+        {
+            name: name,
+            path: `/productos/${slug}`
+        },
+    ]    
   
     useEffect(() => {
       getProductBySlug(slug)
@@ -82,7 +97,7 @@ function Producto() {
     return ( 
         <>
         <SiteHeader />
-        <BreadCrumbs />
+        <BreadCrumbs links={ BreadcrumbsLinks } />
         <ProductsFilter />
         <main className="product-page box">
             <div className="box__container">
