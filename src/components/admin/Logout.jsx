@@ -1,12 +1,20 @@
 import React, { useContext } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { logout } from '../../actions/auth'
 import { AuthContext } from '../../auth/authContext'
 import { types } from '../../types/types'
 
 const Logout = props => {
 
   const navigate = useNavigate()
-  const { user, dispatch } = useContext(AuthContext)
+  const AContext = useContext(AuthContext)
+
+  // -----
+
+    const dispatch = useDispatch()
+
+  // -----
 
   const handleLogout = () => {
 
@@ -14,7 +22,13 @@ const Logout = props => {
       type: types.logout
     }
 
-    dispatch(action)
+    AContext.dispatch(action)
+
+    // -----
+
+      dispatch( logout() )
+
+    // -----
 
     navigate('/login', {
       replace: true
