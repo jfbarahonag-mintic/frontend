@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Container, Typography } from '@mui/material'
 import ProductForm from '../../../components/admin/ProductForm'
 import { storeProduct } from '../../../api'
 import { useNavigate } from 'react-router'
 
+//firebase
+import storage from "../../../firebase/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const Create = () => {
+
+  const [images, setImages] = useState([])
+
+  useEffect(() => {
+    console.log('se actualizo lista de imagenes', images);
+  }, [images])
 
   const navigate = useNavigate()
 
@@ -36,7 +45,9 @@ const Create = () => {
           <ProductForm 
             actionButton="Crear"
             handleSubmit={ handleSubmit }
-            handleDiscard={ handleDiscard }
+            handleDiscard={handleDiscard}
+            images={images}
+            setImages={setImages}
           />
         </Box>
       </Container>

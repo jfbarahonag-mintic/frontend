@@ -6,23 +6,23 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Box } from "@mui/system";
 
-//firebase
-import storage from "../../firebase/firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
 const Input = styled("input")({
   display: "none",
 });
 
 const ImagesFilesAsArray = ({ imagesAsFiles, setImagesAsFiles }) => {
+  useEffect(() => {
+    console.log({ imagesAsFiles });
+  }, [imagesAsFiles]);
 
   const handleClearImage = (e) => {
     console.log(e.target.id);
 
-    const target = e.target.id;
-    imagesAsFiles.splice(target, 1);
+    const target = parseInt(e.target.id);
 
-    setImagesAsFiles(imagesAsFiles);
+    const copyOfImagesAsFiles = [...imagesAsFiles];
+    copyOfImagesAsFiles.splice(target, 1);
+    setImagesAsFiles(copyOfImagesAsFiles);
   };
 
   if (imagesAsFiles.length > 0) {
@@ -46,21 +46,18 @@ const ImagesFilesAsArray = ({ imagesAsFiles, setImagesAsFiles }) => {
   return <span></span>;
 };
 
-const ProductImagesForm = (handleSendImages) => {
+const ProductImagesForm = ({ images, setImages }) => {
   const allInputs = [];
 
   const [imagesAsFiles, setImagesAsFiles] = useState(allInputs);
   const [imagesAsUrls, setImagesAsUrls] = useState(allInputs);
-
-  const handleUploadToFirebase = (e) => {
-    e.preventDefault();
-  };
 
   useEffect(() => {
     console.log(imagesAsFiles);
   }, [imagesAsFiles]);
 
   const handleImagesAsFiles = (e) => {
+    let tempArray = [];
     for (let index = 0; index < e.target.files.length; index++) {
       const image = e.target.files[index];
 
@@ -68,12 +65,11 @@ const ProductImagesForm = (handleSendImages) => {
         console.log(`Type not valid -> ${image.name}, ignored`);
         continue;
       }
-
-      setImagesAsFiles((prevImages) => {
-        const current = [...prevImages, image];
-        return current;
-      });
+      tempArray.push(image);
     }
+    // setImages(imagesAsFiles)
+    setImagesAsFiles(tempArray);
+    setImages(tempArray);
   };
 
   return (

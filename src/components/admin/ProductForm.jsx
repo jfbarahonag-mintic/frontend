@@ -157,7 +157,10 @@ const ProductForm = (props) => {
 
       <Divider sx={{ my: 4 }} />
 
-      <ProductImagesForm />
+      <ProductImagesForm
+        images={props.images}
+        setImages={props.setImages}
+      />
 
       <Divider sx={{ my: 4 }} />
 
