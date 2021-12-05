@@ -28,6 +28,10 @@ const getProductsByCategory = (id) => {
   return fetch(`${url}products/category/${id}`)
 }
 
+const getProductsByQuery = (query) => {
+  return fetch(`${url}products/search/${query}`)
+}
+
 const storeProduct = (data) => {
   return fetch(`${url}products/store`, {
     method: 'POST',
@@ -83,6 +87,7 @@ module.exports = {
   getProductById,
   getProductBySlug,
   getProductsByCategory,
+  getProductsByQuery,
   storeProduct,
   updateProduct,
   // categories

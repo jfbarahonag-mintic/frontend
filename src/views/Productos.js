@@ -7,7 +7,9 @@ import ProductsList from '../components/ProductsList';
 import SiteFooter from '../components/SiteFooter';
 import Paginator from '../components/Paginator'
 
-import { getProducts } from "../api";
+import { getProducts, getProductsByQuery } from "../api";
+import { useLocation } from 'react-router';
+import queryString from "query-string";
 
 
 const Productos = () => {
@@ -23,13 +25,23 @@ const Productos = () => {
     },
   ]
 
+  const location = useLocation()
+
+  const { q = '' } = queryString.parse(location.search)
+
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    getProducts()
-    .then(resp => resp.json())
-    .then(resp => setProducts(resp))
-  }, [])
+    if (q) {
+      getProductsByQuery(q)
+      .then(resp => resp.json())
+      .then(resp => setProducts(resp))
+    } else {
+      getProducts()
+      .then(resp => resp.json())
+      .then(resp => setProducts(resp))
+    }
+  }, [q])
 
   return (
     <div>

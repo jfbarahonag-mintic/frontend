@@ -119,7 +119,6 @@ function ResponsiveDrawer(props) {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              // onClick={() => console.log('loguot')}
               color="inherit"
             >
             <LogoutIcon />
