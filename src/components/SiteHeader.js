@@ -6,15 +6,14 @@ import './SiteHeader.css'
 import SiteLogo from '../assets/cellphone.svg'
 import AccountIcon from '../assets/account.svg'
 import { Link } from 'react-router-dom';
+import SearchBox from './SearchBox';
 
-
-
-function SiteHeader() {
+const SiteHeader = ({ searchBox = false }) => {
     
     const [showMobileMenu, setShowMobileMenu] = useState(false)
 
     let isPageWide = useMediaQuery('(min-width: 768px)')
-
+    
     const toggleMobileMenu = () => {
         setShowMobileMenu(!showMobileMenu)
     }
@@ -22,7 +21,6 @@ function SiteHeader() {
     return (
         <header className="site-header">
             <div className="site-header__container">
-
                 <div className="site-header__box">
                     <img
                         className="site-header__logo"
@@ -36,9 +34,9 @@ function SiteHeader() {
                 { 
                     isPageWide ?
                     <>
-                            {/* <SearchBox /> */}
+                            { searchBox ? <SearchBox isPageWide={ isPageWide } /> : ''}
                             
-                            <div className="User">
+                            <div className="site-header__account-icon">
                                 <Link to="/login">
                                     <img src={ AccountIcon } alt="User icon" />
                                 </Link>
@@ -46,6 +44,8 @@ function SiteHeader() {
                         </>
                     :
                         <> 
+                            { searchBox ? <SearchBox isPageWide={ isPageWide } /> : ''}
+                            
                             <div onClick={ toggleMobileMenu } 
                                 className='responsive-button'>
                                 <div className='responsive-button__line'></div>

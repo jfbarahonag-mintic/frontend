@@ -35,6 +35,11 @@
 }
     
 /* CategoriesMenu */
+.categories-menu {
+    min-width: fit-content;
+    margin-right: 3rem;
+}
+
 .categories-menu__list {
     list-style: none;
     padding: 0;
@@ -48,18 +53,7 @@
 .products-filter__box {
     display: flex;
     align-items: center;
-}
-
-.products-filter .search-box {
-    /* margin-right: 30px; */
-    display: flex;
-    align-items: center;
-    padding-left: 8px;
-    /* width: 240px; */
-    height: 48px;
-    border: 1px solid #ccc;
-    font-style: italic;
-    color: #ccc;
+    justify-content: flex-end;
 }
 
 .order-by {
@@ -132,10 +126,7 @@
     }
 
     .products-filter .search-box {
-        width: 48px;
-        box-sizing: border-box;
-        margin-right: 30px;
-        overflow: hidden;
+        margin-right: 3rem;
     }
 }
 
