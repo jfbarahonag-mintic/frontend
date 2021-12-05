@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCategories } from '../api';
+// import { getCategories } from '../api';
+import { setCategories } from "../actions/data"
 import './ProductsFilter.css'
 import SearchBox from './SearchBox';
 
@@ -9,14 +11,25 @@ const ProductsFilter = () => {
   const [categories, setCategories] = useState([])
   const [showOrderBy, setShowOrderBy] = useState(false)
   const [showCategories, setShowCategories] = useState(false)
+<<<<<<< HEAD
   const [isPageWide, setIsPageWide] = useState(Boolean)
   const [searchBoxIsDeployed, setSearchBoxIsDeployed] = useState(false)
 
+=======
+  
+>>>>>>> 7678cc3241b8d794eb6f4bef61299d69b9529fcf
   useEffect(() => {
-    getCategories()
-    .then(resp => resp.json())
-    .then(data => setCategories(data))
+    // getCategories()
+    // .then(resp => resp.json())
+    // .then(data => setCategories(data))
   }, [])
+  
+  const data = useSelector(state => state.data)
+  
+  useEffect(() => {
+    if (data?.categories) setCategories(data.categories) 
+  }, [data])
+
 
   const orderByOptions = [
     {

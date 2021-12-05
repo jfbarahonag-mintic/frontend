@@ -1,26 +1,39 @@
 import React, { useContext } from "react";
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router";
+import { login } from "../../actions/auth";
 import { AuthContext } from "../../auth/authContext";
 import { types } from "../../types/types";
 import "./Login.css";
-// import imgLogin from "../../assets/Login.jpg";
 
 const Login = () => {
 
   const navigate = useNavigate();
-  const { user, dispatch } = useContext(AuthContext);
+  const AContext = useContext(AuthContext);
+
+  // 
+
+  const dispatch = useDispatch()
+
+  // 
 
   const handleLogin = () => {
-    const action = {
+    const actionContext = {
       type: types.login,
       payload: { name: "Fernando Torres" },
     };
 
-    dispatch(action);
+    AContext.dispatch(actionContext);
+
+    //
+    
+      dispatch(login('Fernando'))
+
+    // 
 
     const lastPath = localStorage.getItem("lastPath");
 
-    navigate("/admin");
+    navigate(lastPath);
   };
 
   const LoginForm = () => {

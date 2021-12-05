@@ -1,17 +1,23 @@
-import React, { useContext } from 'react'
-import { Navigate, useLocation } from 'react-router'
-import { AuthContext } from '../auth/authContext'
+import React, { useContext, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate, useLocation } from 'react-router'
+// import { AuthContext } from '../auth/authContext'
 
 const PrivateRouter = ({ children }) => {
 
-  const { user } = useContext(AuthContext)
+  // const { user } = useContext(AuthContext)
+  
+  const auth = useSelector(state => state.auth)
+  
+  const navigate = useNavigate()
+
   const { pathname, search } = useLocation()
 
   localStorage.setItem('lastPath', pathname + search)
 
-  return user.logged
+  return auth.logged
   ? children
-  : <Navigate to="/login" />
+  : navigate("/login")
 }
 
 export default PrivateRouter
