@@ -60,6 +60,30 @@ const getCategories = () => {
   return fetch(`${url}categories/`)
 }
 
+const addCategory = (data) => {
+  return fetch(`${url}categories/store`, {
+    method: 'POST',
+    ...options,
+    body: JSON.stringify(data)
+  })
+}
+
+const deleteCategory = (id) => {
+  return fetch(`${url}categories/destroy/${id}`, {
+    method: 'DELETE',
+    ...options,
+    body: JSON.stringify()
+  })
+}
+
+const updateCategory = (data, id) => {
+  return fetch(`${url}categories/update/${id}`, {
+    method: 'PUT',
+    ...options,
+    body: JSON.stringify(data)
+  })
+}
+
 const getUsers = () => {
   return fetch(`${url}users/`)
 }
@@ -100,6 +124,9 @@ module.exports = {
   deleteProduct,
   // categories
   getCategories,
+  addCategory,
+  updateCategory,
+  deleteCategory,
   // users
   getUsers,
   postUser,
