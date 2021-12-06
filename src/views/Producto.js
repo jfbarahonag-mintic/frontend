@@ -7,10 +7,10 @@ import BreadCrumbs from '../components/BreadCrumbs'
 import ProductsFilter from '../components/ProductsFilter'
 import ProductsList from '../components/ProductsList'
 import SiteFooter from '../components/SiteFooter'
-
+import ProductGallery from '../components/ProductGallery';
 
 import './Producto.css'
-import ProductGallery from '../components/ProductGallery';
+
 
 function Producto() {
 
@@ -86,11 +86,11 @@ function Producto() {
 
     const RelatedProducts = () => {
         return (
-                    // <h2 className="related-products__title sub-title">Productos relacionados</h2>
-                    <ProductsList 
-                        products={ relatedProducts } 
-                        h2="Productos relacionados"
-                    />
+            // <h2 className="related-products__title sub-title">Productos relacionados</h2>
+            <ProductsList 
+                products={ relatedProducts } 
+                h2="Productos relacionados"
+            />
         )
     }
 

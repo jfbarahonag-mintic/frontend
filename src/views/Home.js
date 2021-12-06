@@ -7,6 +7,7 @@ import { getProducts } from "../api";
 
 import './Home.css'
 import { useEffect } from "react";
+import CallToAction from "../components/CallToAction";
 
 
 const SliderImages = [
@@ -69,6 +70,7 @@ const Home = () => {
         h2="PRODUCTOS"
       />
       <HomeDescription />
+      <CallToAction />
     </WebLayout>
   )
 }

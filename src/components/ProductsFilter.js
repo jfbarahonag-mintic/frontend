@@ -47,7 +47,7 @@ const ProductsFilter = () => {
       (window.innerWidth > 960) ? 
         setIsPageWide(true) :
         setIsPageWide(false)
-    }
+    }; console.log('showCategories', showCategories, 'showOrderBy', showOrderBy)
     updateWindowWidth()
     window.addEventListener('resize', updateWindowWidth)
     return () => { window.removeEventListener('resize', updateWindowWidth) };
@@ -97,7 +97,7 @@ const ProductsFilter = () => {
   });
 
   const CategoryList = () => {
-    if (showCategories) {
+    if (showCategories || isPageWide) {
       return (
         <ul className="categories-menu__list">
           { CategoryItems }

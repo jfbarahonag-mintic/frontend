@@ -88,6 +88,14 @@ const getUsers = () => {
   return fetch(`${url}users/`)
 }
 
+const loginUser = (data) => {
+  return fetch(`${url}users/login`, {
+    method: 'POST',
+    ...options,
+    body: JSON.stringify(data)
+  })
+}
+
 const postUser = (data = {}) => {
   return fetch(`${url}users/add`, {
     method: 'POST',
@@ -112,6 +120,14 @@ const updateUser = (data = {}, id="") => {
   });
 }
 
+const storeSubscriber = (data) => {
+  return fetch(`${url}subscribers/store`, {
+    method: 'POST',
+    ...options,
+    body: JSON.stringify(data)
+  })
+}
+
 module.exports = {
   // products
   getProducts,
@@ -129,6 +145,9 @@ module.exports = {
   deleteCategory,
   // users
   getUsers,
+  loginUser,
   postUser,
   updateUser,
+  // subscriber
+  storeSubscriber,
 }

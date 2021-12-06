@@ -50,7 +50,7 @@ const Productos = () => {
       <PageTitle title="PRODUCTOS"/> 
       <ProductsFilter />
       <ProductsList products={ products } />
-      <Paginator />
+      {/* <Paginator /> */}
       <SiteFooter />
     </div>
   )
