@@ -22,6 +22,7 @@
 .home_description__img {
   display: block;
   width: 100%;
+  box-shadow: 0 0 4px #ccc;
 }
 
 .home_description__text {}

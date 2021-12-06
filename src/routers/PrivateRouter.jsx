@@ -9,7 +9,7 @@ const PrivateRouter = ({ children }) => {
   // const { user } = useContext(AuthContext)
   
   const auth = useSelector(state => state.auth)
-  console.log('vcfhgjfchkjvkhgcvfhgt',auth)
+  
   
   const navigate = useNavigate()
 
