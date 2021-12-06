@@ -1,34 +1,43 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCategories } from '../api';
+// import { getCategories } from '../api';
+import { setCategories } from "../actions/data"
 import './ProductsFilter.css'
+import SearchBox from './SearchBox';
 
-const ProductsFilter = props => {
+const ProductsFilter = () => {
 
   const [categories, setCategories] = useState([])
   const [showOrderBy, setShowOrderBy] = useState(false)
   const [showCategories, setShowCategories] = useState(false)
+  const [isPageWide, setIsPageWide] = useState(Boolean)
+  const [searchBoxIsDeployed, setSearchBoxIsDeployed] = useState(false)
 
   useEffect(() => {
-    getCategories()
-    .then(resp => resp.json())
-    .then(data => setCategories(data))
+    // getCategories()
+    // .then(resp => resp.json())
+    // .then(data => setCategories(data))
   }, [])
+  
+  const data = useSelector(state => state.data)
+  
+  useEffect(() => {
+    if (data?.categories) setCategories(data.categories) 
+  }, [data])
 
-  // ESTE SE SUPONE QUE LO IMPORTO
-  const SearchBox = () => <div className="search-box">Buscar...</div>;
 
   const orderByOptions = [
     {
-      name: 'Opción 1',
+      name: 'Menor precio',
       value: 'value-1'
     },
     {
-      name: 'Opción 2',
+      name: 'Mayor precio',
       value: 'value-2'
     },
     {
-      name: 'Opción 3',
+      name: 'Alfabeticamente',
       value: 'value-3'
     },
   ];
@@ -36,8 +45,8 @@ const ProductsFilter = props => {
   useEffect(() => {
     const updateWindowWidth = () => {
       (window.innerWidth > 960) ? 
-        setShowCategories(true) :
-        setShowCategories(false)
+        setIsPageWide(true) :
+        setIsPageWide(false)
     }
     updateWindowWidth()
     window.addEventListener('resize', updateWindowWidth)
@@ -57,6 +66,10 @@ const ProductsFilter = props => {
   const hideLists = () => {
     setShowOrderBy(false)
     if (window.innerWidth < 960) setShowCategories(false)
+  }
+
+  const deploySearchBox = (value) => {
+    setSearchBoxIsDeployed(value)
   }
 
   const ListLabel = ({name, handler}) => {
@@ -129,7 +142,7 @@ const ProductsFilter = props => {
           name={ "Ordenar: " } 
           handler={ toggleOrderBy }
         />
-        <OrderByList />        
+        <OrderByList />
       </div>
     )
   }
@@ -137,11 +150,14 @@ const ProductsFilter = props => {
   return (
     <div className="products-filter">
       <div className="products-filter__container">
-        
-        <CategoriesMenu />
-
+        {
+          searchBoxIsDeployed && !isPageWide ?
+          ''
+          :
+          <CategoriesMenu />
+        }
         <div className="products-filter__box">
-          <SearchBox />
+          <SearchBox isPageWide={ isPageWide } onDeploy={ deploySearchBox } />
           <OrderBy />
         </div>
       </div>

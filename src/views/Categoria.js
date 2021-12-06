@@ -7,6 +7,7 @@ import SiteHeader from '../components/SiteHeader';
 import ProductsList from '../components/ProductsList'
 import SiteFooter from '../components/SiteFooter'
 import Paginator from '../components/Paginator'
+import BreadCrumbs from '../components/BreadCrumbs';
 
 const Categoria = props => {
 
@@ -14,6 +15,21 @@ const Categoria = props => {
 
   const [category, setCategory] = useState({})
   const [products, setProducts] = useState([])
+
+  const BreadcrumbsLinks = [
+      {
+          name: 'Inicio',
+          path: '/'
+      },
+      {
+          name: 'Categorías',
+          path: '/productos'
+      },
+      {
+          name: category.name,
+          path: `/categorias/${slug}`
+      },
+  ] 
 
   useEffect(() => {
     getCategories()
@@ -36,6 +52,7 @@ const Categoria = props => {
   return (
     <>
       <SiteHeader />
+      <BreadCrumbs links={ BreadcrumbsLinks } />
       <PageTitle title={ category.name }/>
       <ProductsFilter />
       <ProductsList products={ products } />

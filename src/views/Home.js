@@ -62,7 +62,7 @@ const Home = () => {
   }, [])
 
   return (
-    <WebLayout>
+    <WebLayout searchBox={ true }>
       <CoverSlider images={SliderImages} />
       <ProductsList 
         products={ products } 
