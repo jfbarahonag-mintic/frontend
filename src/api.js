@@ -128,7 +128,7 @@ const storeSubscriber = (data) => {
   })
 }
 
-module.exports = {
+export {
   // products
   getProducts,
   getProductById,
