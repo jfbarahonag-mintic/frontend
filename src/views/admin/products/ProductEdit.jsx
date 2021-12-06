@@ -68,7 +68,7 @@ const Edit = () => {
         </Box>
 
         <Box my={5}>
-          <ProductDeleteForm />
+          <ProductDeleteForm id={ id }/>
         </Box>
       </Container>
     </>

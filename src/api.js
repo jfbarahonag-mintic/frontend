@@ -48,6 +48,13 @@ const updateProduct = (id, data) => {
   })
 }
 
+const deleteProduct = (id) => {
+  return fetch(`${url}products/delete/${id}`,{
+  method: 'DELETE',
+  ...options,
+  })
+}
+
 // Categories
 const getCategories = () => {
   return fetch(`${url}categories/`)
@@ -90,6 +97,7 @@ module.exports = {
   getProductsByQuery,
   storeProduct,
   updateProduct,
+  deleteProduct,
   // categories
   getCategories,
   // users
