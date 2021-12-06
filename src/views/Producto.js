@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getProductBySlug, getProductsByCategory } from '../api';
 import useMediaQuery from '../hooks/useMediaQuery'
-import SiteHeader from '../components/SiteHeader'
 import BreadCrumbs from '../components/BreadCrumbs'
 import ProductsFilter from '../components/ProductsFilter'
 import ProductsList from '../components/ProductsList'
-import SiteFooter from '../components/SiteFooter'
 import ProductGallery from '../components/ProductGallery';
-
+import WebLayout from '../layouts/WebLayout';
 import './Producto.css'
 
 
@@ -95,49 +93,47 @@ function Producto() {
     }
 
     return ( 
-        <>
-        <SiteHeader />
-        <BreadCrumbs links={ BreadcrumbsLinks } />
-        <ProductsFilter />
-        <main className="product-page box">
-            <div className="box__container">
+        <WebLayout>
+            <BreadCrumbs links={ BreadcrumbsLinks } />
+            <ProductsFilter />
+            <main className="product-page box">
+                <div className="box__container">
 
-                <div className="product-page__overview">
-                    
-                    { isPageWide ? '' : productTitle }
-
-                    <ProductGallery 
-                        images={ images } 
-                    />
-                    
-                    <div className="product-page__info">
+                    <div className="product-page__overview">
                         
-                        { isPageWide ? productTitle : '' }
+                        { isPageWide ? '' : productTitle }
 
-                        <p className="product-page__description">
-                            { description }
-                        </p>
-                        <div className="product-page__price sub-title">
-                            $ { price.toLocaleString("es-ES") }
+                        <ProductGallery 
+                            images={ images } 
+                        />
+                        
+                        <div className="product-page__info">
+                            
+                            { isPageWide ? productTitle : '' }
+
+                            <p className="product-page__description">
+                                { description }
+                            </p>
+                            <div className="product-page__price sub-title">
+                                $ { price.toLocaleString("es-ES") }
+                            </div>
+                            <button className="product-page__button button">
+                                COMPRAR
+                            </button>
                         </div>
-                        <button className="product-page__button button">
-                            COMPRAR
-                        </button>
+
                     </div>
-
+                    <div className="product-page__features">
+                        <h2 className="product-page__features-title">CARACTERÍSTICAS:</h2>
+                        <ul className="product-page__features-list">
+                            {featuresList}
+                        </ul>
+                    </div>
                 </div>
-                <div className="product-page__features">
-                    <h2 className="product-page__features-title">CARACTERÍSTICAS:</h2>
-                    <ul className="product-page__features-list">
-                        {featuresList}
-                    </ul>
-                </div>
-            </div>
-        </main>
+            </main>
 
-        <RelatedProducts />
-        <SiteFooter />
-        </>
+            <RelatedProducts />
+        </WebLayout>
     );
 }
 
