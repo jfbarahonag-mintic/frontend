@@ -4,16 +4,14 @@ import queryString from "query-string";
 
 import  './SearchBox.css'
 
-const SearchBox = ({ isPageWide, onDeploy = () => {} }) => {
+const SearchBox = ({ isPageWide, setSearchBoxDeployed = () => {} }) => {
 
     const navigate = useNavigate()
     
     const [isCollapsed, setIsCollapsed] = useState(Boolean)
-
     const [inputValue, setInputValue] = useState("")
-
+    
     const location = useLocation()
-  
     const { q = '' } = queryString.parse(location.search)
 
     useEffect(() => {
@@ -30,20 +28,23 @@ const SearchBox = ({ isPageWide, onDeploy = () => {} }) => {
             setInputValue(q)
             setIsCollapsed(false)
             document.getElementById('input-search-box').focus()
-        } 
-    })
+        } else {
+            setInputValue('')
+        }
+    }, [q])
 
     useEffect(() => {
         if (!isCollapsed) {
-            onDeploy(true)
+            setSearchBoxDeployed(true)
         } else {
-            onDeploy(false)
+            setSearchBoxDeployed(false)
         }
     }, [isCollapsed])
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value)
-        navigate(`/productos?q=${e.target.value}`)
+        let path = (e.target.value.length > 0) ? '/productos?q=' : '/productos'
+        navigate(`${path}${e.target.value}`)
         document.getElementById('input-search-box').focus()
     }
 
@@ -52,7 +53,6 @@ const SearchBox = ({ isPageWide, onDeploy = () => {} }) => {
     }
 
     const hideInput = (e) => {
-        let input = e.target
         if (isPageWide === false) { 
             setIsCollapsed(true)
         }

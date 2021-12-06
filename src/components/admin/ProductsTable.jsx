@@ -14,12 +14,15 @@ import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
 
 const ProductsTableRow = ({ row }) => {
+  
   return (
     <TableRow>
       <TableCell align="center">
         <CircleIcon color={row.status === "activo" ? "success" : "error"} />
       </TableCell>
-      <TableCell align="center">{row.category_id} </TableCell>
+      <TableCell align="center">
+        { row.category ? row.category.name : '-' } 
+      </TableCell>
       <TableCell align="center">{row.name} </TableCell>
       <TableCell align="center">
         {row.price ? `$ ${row.price.toLocaleString("es-ES")}` : "-"}
@@ -39,9 +42,11 @@ const ProductsTableRow = ({ row }) => {
         </Link>
       </TableCell>
     </TableRow>
-  );
-};
+  )
+}
+
 function ProductsTable({ titles, rows }) {
+
   const [content, setContent] = React.useState(rows || []);
 
   React.useEffect(() => {
