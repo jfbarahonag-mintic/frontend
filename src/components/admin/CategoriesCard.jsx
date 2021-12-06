@@ -8,29 +8,21 @@ import { MenuItem } from "@mui/material";
 import { Alert } from "@mui/material";
 
 import { UsersTable } from "./UsersTable";
-import { postUser } from "../../api";
+import { addCategory } from "../../api";
 import { CategoriesTable } from "./CategoriesTable";
 
 const FormModal = React.forwardRef((props, ref) => {
   const flags = {
     none: 0,
     empty: 1,
-    mismatch: 2,
+    unknown: 2,
     alreadyRegistered: 3,
   };
 
-  const stat = {
-    inactive: 0,
-    active: 1,
-  };
-
   const [open, setOpen] = React.useState(false);
-  const [name, setName] = React.useState("");
-  const [role, setRole] = React.useState("editor");
-  const [email, setEmail] = React.useState("");
-  const [pswd, setPswd] = React.useState("");
-  const [repeatPswd, setRepeatPswd] = React.useState("");
-  const [status, setStatus] = React.useState(stat.active);
+	const [name, setName] = React.useState("");
+	const [slug, setSlug] = React.useState("");
+
   const [errors, setErrors] = React.useState(flags.none);
   const [alert, setAlert] = React.useState(false);
 
@@ -45,21 +37,16 @@ const FormModal = React.forwardRef((props, ref) => {
 
   const handleClose = () => setOpen(false);
 
-  const handleChangeRole = (e) => {
-    setRole(e.target.value);
-  };
-
-  const handleChangeStatus = (e) => {
-    setStatus(e.target.value);
+  const handleChangeSlug = (e) => {
+    setSlug(e.target.value);
   };
 
   const handleSeverity = () => {
     switch (errors) {
       case flags.none:
         return "success";
-      case flags.alreadyRegistered:
-      case flags.empty:
-      case flags.mismatch:
+				case flags.empty:
+				case flags.unknown:
         return "error";
 
       default:
@@ -70,49 +57,39 @@ const FormModal = React.forwardRef((props, ref) => {
   const handleMessage = () => {
     if (errors === flags.none) return `Usuario registrado`;
     else if (errors === flags.empty) return `Hay campos vacíos`;
-    else if (errors === flags.mismatch) return `Contraseña no coincide`;
+    else if (errors === flags.unknown) return `Error desconocido`;
     else if (errors === flags.alreadyRegistered) return `El usuario ya existe`;
-  };
+	};
+	
+	const postCategory = async (data) => {
+		let resp = await addCategory(data)
+		resp = await resp.json()
+		console.log('postCategory -> ', resp)
+		if (resp.message === "Ha ocurrido un error") {
+			setErrors(flags.unknown)
+		} else {
+			setErrors(flags.none)
+			window.location.reload(false);
+		}
+	}
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setAlert(true);
-    //TODO: check if email (and password?) was already registered
 
     if (
-      name === "" ||
-      email === "" ||
-      role === "" ||
-      pswd === "" ||
-      repeatPswd === ""
+			name === "" ||
+			slug === ""
     ) {
       setErrors(flags.empty);
-      return;
-    }
-
-    if (pswd !== repeatPswd) {
-      setErrors(flags.mismatch);
       return;
     }
     //all ok
     const data = {
       name,
-      email,
-      password: pswd,
-      status,
-      role,
+      slug,
     };
-
-    postUser(data)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message === "El usuario ya existe.") {
-          setErrors(flags.alreadyRegistered);
-        } else {
-          setErrors(flags.none);
-          window.location.reload(false);
-        }
-      });
+    postCategory(data)
   };
 
   React.useImperativeHandle(ref, () => ({
@@ -144,71 +121,25 @@ const FormModal = React.forwardRef((props, ref) => {
         >
           <TextField
             margin="normal"
-            id="outlined-name-input"
-            label="Nombre completo"
+            id="outlined-category-input"
+            label="Nombre de la categoria"
             type="text"
             value={name}
             onChange={(e) => {
               setName(e.target.value);
             }}
           />
-
-          <InputLabel>Rol</InputLabel>
-          <Select
-            labelId="rol"
-            id="role"
-            value={role}
-            label="Rol"
-            onChange={handleChangeRole}
-          >
-            <MenuItem value={`admin`}>Admin</MenuItem>
-            <MenuItem value={`editor`}>Editor</MenuItem>
-          </Select>
-
-          <InputLabel>Status</InputLabel>
-          <Select
-            labelId="status"
-            id="status"
-            value={status}
-            label="Status"
-            onChange={handleChangeStatus}
-          >
-            <MenuItem value={stat.active}>Activo</MenuItem>
-            <MenuItem value={stat.inactive}>Inactivo</MenuItem>
-          </Select>
-
           <TextField
             margin="normal"
-            id="outlined-email-input"
-            label="Email"
-            type="email"
-            value={email}
+            id="outlined-name-input"
+            label="Slug"
+            type="text"
+            value={slug}
             onChange={(e) => {
-              setEmail(e.target.value);
+              setSlug(e.target.value);
             }}
           />
-          <TextField
-            margin="normal"
-            id="outlined-password-input"
-            label="Contraseña"
-            type="password"
-            autoComplete="current-password"
-            value={pswd}
-            onChange={(e) => {
-              setPswd(e.target.value);
-            }}
-          />
-          <TextField
-            margin="normal"
-            id="outlined-confirm-password-input"
-            label="Confirmar Contraseña"
-            type="password"
-            autoComplete="current-password"
-            value={repeatPswd}
-            onChange={(e) => {
-              setRepeatPswd(e.target.value);
-            }}
-          />
+
           {alert === true && (
             <Alert severity={handleSeverity()} style={{ marginBottom: "10px" }}>
               {handleMessage()}
