@@ -7,8 +7,16 @@ import { getProductById, updateProduct } from '../../../api'
 import ProductDeleteForm from '../../../components/admin/ProductDeleteForm'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setDashboardTitle } from '../../../actions/ui'
 
 const Edit = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch( setDashboardTitle('Producto / Editar') )
+  }, [])
 
   const navigate = useNavigate()
 

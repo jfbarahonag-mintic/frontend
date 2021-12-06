@@ -1,11 +1,19 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
 import { Card } from '../../../components/admin/UsersCard'
-
 import { getUsers } from "../../../api";
+import { useDispatch } from 'react-redux';
+import { setDashboardTitle } from '../../../actions/ui';
 
-const titles = ['Status', 'Nombre', 'Email', 'Rol']
 const Home = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch( setDashboardTitle('Usuarios') )
+  }, [])
+
+  const titles = ['Status', 'Nombre', 'Email', 'Rol']
+  
   const [users, setUsers] = React.useState([]);
 
   React.useEffect(() => {

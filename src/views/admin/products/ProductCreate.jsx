@@ -7,8 +7,16 @@ import { useNavigate } from 'react-router'
 //firebase
 import storage from "../../../firebase/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { useDispatch } from 'react-redux'
+import { setDashboardTitle } from '../../../actions/ui'
 
 const Create = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch( setDashboardTitle('Producto / Crear') )
+  }, [])
 
   const [images, setImages] = useState([])
 

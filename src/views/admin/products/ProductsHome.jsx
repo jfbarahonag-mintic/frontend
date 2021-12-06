@@ -1,12 +1,19 @@
 import React from "react";
 import { useState } from "react";
-
 import { ProductsTable } from "../../../components/admin/ProductsTable";
 import { getProducts } from "../../../api";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setDashboardTitle } from '../../../actions/ui'
 
-//TODO: Rename this Component
-function Home({ children }) {
+const ProductsHome = ({ children }) => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch( setDashboardTitle('Productos') )
+  }, [])
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -24,4 +31,4 @@ function Home({ children }) {
     </div>
   );
 }
-export default Home;
+export default ProductsHome;
