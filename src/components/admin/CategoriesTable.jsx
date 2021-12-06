@@ -8,19 +8,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import EditIcon from "@mui/icons-material/Edit";
-// import CircleIcon from "@mui/icons-material/Circle";
 import { IconButton, Modal, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { Alert } from "@mui/material";
-import { MenuItem } from "@mui/material";
-import { InputLabel } from "@mui/material";
-import { Select } from "@mui/material";
 
-import { updateUser } from "../../api";
+import { updateCategory } from "../../api";
 
 const UpdateModalForm = React.forwardRef(({ data, onDataChanged }, ref) => {
-  console.log("data->", data);
   const flags = {
     none: 0,
     empty: 1,
@@ -40,6 +35,7 @@ const UpdateModalForm = React.forwardRef(({ data, onDataChanged }, ref) => {
   const [alert, setAlert] = useState(false);
 
   const handleClose = () => setOpen(false);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setAlert(true);
@@ -54,7 +50,7 @@ const UpdateModalForm = React.forwardRef(({ data, onDataChanged }, ref) => {
       slug,
     };
 
-    updateUser(newData, data._id)
+    updateCategory(newData, data._id)
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "slug en uso por otra cuenta.") {
@@ -86,7 +82,7 @@ const UpdateModalForm = React.forwardRef(({ data, onDataChanged }, ref) => {
     }
   };
   const handleMessage = (e) => {
-    if (errors === flags.none) return `Usuario actualizado`;
+    if (errors === flags.none) return `Categoria actualizada`;
     else if (errors === flags.empty) return `Hay campos vacíos`;
     else if (errors === flags.slugNotValid) return `slug en uso`;
     else if (errors === flags.pswdLength)
@@ -166,7 +162,6 @@ const UpdateModalForm = React.forwardRef(({ data, onDataChanged }, ref) => {
 });
 
 function CategoriesTableRow({ row }) {
-  console.log("row -> ", row);
   const updateModalRef = React.useRef();
   const handleClick = () => {
     updateModalRef.current.handleOpen(true);

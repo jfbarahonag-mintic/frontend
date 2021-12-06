@@ -55,10 +55,10 @@ const FormModal = React.forwardRef((props, ref) => {
   };
 
   const handleMessage = () => {
-    if (errors === flags.none) return `Usuario registrado`;
+    if (errors === flags.none) return `Categoria registrada`;
     else if (errors === flags.empty) return `Hay campos vacíos`;
     else if (errors === flags.unknown) return `Error desconocido`;
-    else if (errors === flags.alreadyRegistered) return `El usuario ya existe`;
+    else if (errors === flags.alreadyRegistered) return `La categoria ya existe`;
 	};
 	
 	const postCategory = async (data) => {
