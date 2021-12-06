@@ -1,6 +1,6 @@
 import React from 'react'
 import Box from '@mui/material/Box';
-import { Button, Divider, FormControl, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select, Stack, TextField, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom'
 import { deleteProduct } from '../../api';
 
@@ -8,16 +8,16 @@ const ProductDeleteForm = ({ id }) => {
 
   const navigate = useNavigate ()
 
-  const handleSubmit = () =>{
+  const handleSubmit = (e) =>{
+    e.preventDefault()
     let confirm = window.confirm('¿Está seguro de que desea eliminar este producto?');
       if (confirm) {
-        // let id = this.$route.params.id;
         deleteProduct(id)
-        .then(response => {
-          alert('El producto: ' + response.data.name + ' ha sido eliminado.')
+        .then(resp => resp.json())
+        .then(data => {
+          alert('El producto: ' + data.name + ' ha sido eliminado.')
           navigate ("/admin/products")
-        }
-        )
+        })
       }
   }
 

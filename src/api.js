@@ -97,6 +97,7 @@ module.exports = {
   getProductsByQuery,
   storeProduct,
   updateProduct,
+  deleteProduct,
   // categories
   getCategories,
   // users
