@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Card } from '../../../components/admin/Card'
+import { Card } from '../../../components/admin/UsersCard'
 
 import { getUsers } from "../../../api";
 
