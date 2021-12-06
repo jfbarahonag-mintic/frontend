@@ -1,24 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import { getCategories } from '../api';
-import { setCategories } from "../actions/data"
 import './ProductsFilter.css'
 import SearchBox from './SearchBox';
 
 const ProductsFilter = () => {
+
+  // TODO: onClickOutside para listas desplegables.
 
   const [categories, setCategories] = useState([])
   const [showOrderBy, setShowOrderBy] = useState(false)
   const [showCategories, setShowCategories] = useState(false)
   const [isPageWide, setIsPageWide] = useState(Boolean)
   const [searchBoxIsDeployed, setSearchBoxIsDeployed] = useState(false)
-
-  useEffect(() => {
-    // getCategories()
-    // .then(resp => resp.json())
-    // .then(data => setCategories(data))
-  }, [])
   
   const data = useSelector(state => state.data)
   
@@ -42,12 +36,13 @@ const ProductsFilter = () => {
     },
   ];
 
+  // sets isPageWide
   useEffect(() => {
     const updateWindowWidth = () => {
       (window.innerWidth > 960) ? 
         setIsPageWide(true) :
         setIsPageWide(false)
-    }; console.log('showCategories', showCategories, 'showOrderBy', showOrderBy)
+    }; 
     updateWindowWidth()
     window.addEventListener('resize', updateWindowWidth)
     return () => { window.removeEventListener('resize', updateWindowWidth) };
@@ -68,9 +63,15 @@ const ProductsFilter = () => {
     if (window.innerWidth < 960) setShowCategories(false)
   }
 
-  const deploySearchBox = (value) => {
+  const setSearchBoxDeployed = (value) => {
     setSearchBoxIsDeployed(value)
   }
+
+  const handleOrderBy = (e, value) => {
+    console.log('Order by', value)
+    hideLists()
+  }
+
 
   const ListLabel = ({name, handler}) => {
     return (
@@ -122,7 +123,15 @@ const ProductsFilter = () => {
 
 
   const orderByItems = orderByOptions.map(o => {
-    return <li key={o.value} className="order-by__item">{o.name}</li>
+    return (
+      <li 
+        key={o.value} 
+        className="order-by__item"
+        onClick={ (e) => { handleOrderBy(e, o.value) } }
+      >
+        {o.name}
+      </li>
+    )
   });
 
   const OrderByList = () => {
@@ -157,8 +166,16 @@ const ProductsFilter = () => {
           <CategoriesMenu />
         }
         <div className="products-filter__box">
-          <SearchBox isPageWide={ isPageWide } onDeploy={ deploySearchBox } />
-          <OrderBy />
+          <SearchBox 
+            isPageWide={ isPageWide } 
+            setSearchBoxDeployed={ setSearchBoxDeployed } 
+          />
+          {
+            searchBoxIsDeployed && !isPageWide ?
+            ''
+            :
+            <OrderBy />
+          }
         </div>
       </div>
     </div>

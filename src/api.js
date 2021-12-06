@@ -1,4 +1,4 @@
-const url = 'http://localhost:4000/api/'
+const url = 'https://react-products-app.herokuapp.com/api/'
 
 const options = {
   mode: 'cors',
