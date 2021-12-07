@@ -1,6 +1,6 @@
 import { useState } from "react";
 import WebLayout from "../layouts/WebLayout";
-import CoverSlider from "../components/CoverSlider";
+// import CoverSlider from "../components/CoverSlider";
 import ProductsList from "../components/ProductsList";
 
 import { getProducts } from "../api";
@@ -64,7 +64,8 @@ const Home = () => {
 
   return (
     <WebLayout searchBox={ true }>
-      <CoverSlider images={SliderImages} />
+      <div>SLIDER</div>
+      {/* <CoverSlider images={SliderImages} /> */}
       <ProductsList 
         products={ products } 
         h2="PRODUCTOS"
