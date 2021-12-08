@@ -6,7 +6,7 @@ import { getCategories } from "./api"
 import AppRouter from './routers/AppRouter'
 import getUserFromToken from "./helpers/getUserFromToken"
 
-const App = () => {
+const App = () => { 
   
   const dispatch = useDispatch()
   
