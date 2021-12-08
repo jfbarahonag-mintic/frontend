@@ -41,3 +41,13 @@
   text-shadow: 0 0 6px #fff;
   /* background-color: var(--c3); */
 }
+
+.slider .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 0 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: var(--c3);
+}
