@@ -11,7 +11,7 @@ const AdminHome = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch( setDashboardTitle('Producto / Editar') )
+    dispatch( setDashboardTitle('Dashboard') )
   }, [])
 
   

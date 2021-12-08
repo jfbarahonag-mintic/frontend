@@ -1,43 +1,25 @@
-import React, { useContext, useState } from "react";
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState } from "react";
+import { useDispatch } from 'react-redux'
 import { useNavigate } from "react-router";
 import { login } from "../../actions/auth";
 import { loginUser } from "../../api";
-import { AuthContext } from "../../auth/authContext";
-import { types } from "../../types/types";
+import jwt_decode from "jwt-decode";
 import "./Login.css";
 
 const Login = () => {
 
   const navigate = useNavigate();
-  const AContext = useContext(AuthContext);
-
-  // -----
   const dispatch = useDispatch()
-  // -----
 
   const setLogin = (data) => { 
-
-    // tokenReturn
-    // checkUser
-
-    localStorage.setItem('token', data.tokenReturn)
-
-    const actionContext = {
-      type: types.login,
-      payload: { name: data.checkUser.name },
-    };
-
-    AContext.dispatch(actionContext);
-
-    //
     
-      dispatch(login(data.checkUser.name))
+    localStorage.setItem('token', data.tokenReturn)
+    
+    let token = jwt_decode(data.tokenReturn)
+    
+    dispatch( login( token.name ) )
 
-    // 
-
-    const lastPath = localStorage.getItem("lastPath");
-
+    const lastPath = localStorage.getItem("lastPath") || "/admin";
     navigate(lastPath);
   };
 
@@ -51,29 +33,24 @@ const Login = () => {
     }
 
     const handleSubmit = (e) => {
+
       e.preventDefault()
+
       let data = {
         email: email,
         password: password
       }
-      // console.log(data)
+      
       loginUser(data)
-      .then(resp => {
-        if (resp.ok) {
-          return resp.json()
-        } else {
-          console.log('El coso esta invalñido')
-          return resp.json()
-        }
-      })
-      .then(data => {
-        if (data.tokenReturn) {
-          setLogin(data)
-        } else {
-          alert(data.message)
-        }
-      })
-      .catch(err => console.log(err))
+        .then(resp => resp.json())
+        .then(data => {
+          if (data.tokenReturn) {
+            setLogin(data)
+          } else {
+            alert(data.message)
+          }
+        })
+        .catch(err => console.log(err))
     }
 
     return (
@@ -82,7 +59,7 @@ const Login = () => {
         <form onSubmit={ handleSubmit }>
           <div>
             <label htmlFor="emailInput">
-              Correo
+              Email:
             </label>
               <input 
                 id="emailInput"
@@ -94,7 +71,7 @@ const Login = () => {
           </div>
           <div>
             <label htmlFor="passwordInput">
-              Contraseña
+              Contraseña:
             </label>
               <input 
                 id="passwordInput"
@@ -120,7 +97,6 @@ const Login = () => {
 
       </section>
       <section className="login-page__col2">
-        {/* <img src={imgLogin} alt="" /> */}
         <div 
           className="img"
           style={{ backgroundImage: "url(/images/login/login-background.jpg)" }}

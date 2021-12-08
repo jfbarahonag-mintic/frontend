@@ -1,4 +1,4 @@
-const url = 'https://react-products-app.herokuapp.com/api/'
+const url = 'https://node-products-api-v2.herokuapp.com/api/'
 
 const options = {
   mode: 'cors',
@@ -128,7 +128,7 @@ const storeSubscriber = (data) => {
   })
 }
 
-module.exports = {
+export {
   // products
   getProducts,
   getProductById,

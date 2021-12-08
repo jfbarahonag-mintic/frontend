@@ -2,13 +2,13 @@ import React, { useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../../actions/auth'
-import { AuthContext } from '../../auth/authContext'
-import { types } from '../../types/types'
+// import { AuthContext } from '../../auth/authContext'
+// import { types } from '../../types/types'
 
 const Logout = props => {
 
   const navigate = useNavigate()
-  const AContext = useContext(AuthContext)
+  // const AContext = useContext(AuthContext)
 
   // -----
 
@@ -20,15 +20,15 @@ const Logout = props => {
 
     localStorage.removeItem('token')
 
-    const action = {
-      type: types.logout
-    }
+    // const action = {
+    //   type: types.logout
+    // }
 
-    AContext.dispatch(action)
+    // AContext.dispatch(action)
 
     // -----
 
-      dispatch( logout() )
+    dispatch( logout() )
 
     // -----
 

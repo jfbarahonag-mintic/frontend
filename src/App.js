@@ -1,77 +1,42 @@
-import React, { useEffect, useReducer, useState } from "react"
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect, useState } from "react"
+import { useDispatch } from 'react-redux'
 import { login, logout } from "./actions/auth"
 import { setCategories } from "./actions/data"
 import { getCategories } from "./api"
-import { AuthContext } from "./auth/authContext"
-import { authReducer } from "./reducers/authReducer"
 import AppRouter from './routers/AppRouter'
-
-const init = () => {
-  return JSON.parse(localStorage.getItem('user')) || { logged: false }
-}
+import getUserFromToken from "./helpers/getUserFromToken"
 
 const App = () => {
   
-  const [userContext, dispatchContext] = useReducer(authReducer, {}, init)
-  
-  useEffect(() => {
-    if (!userContext) {
-      return
-    }
-    localStorage.setItem('user', JSON.stringify(userContext))
-  }, [userContext])
-  
-  // ---------- //
-  
-  const [user, setUser] = useState(init)
-
-  const [isLogged, setIsLogged] = useState(Boolean)
-
-  const [isLoading, setIsLoading] = useState(true)
-  
   const dispatch = useDispatch()
+  
+  const [user, setUser] = useState( getUserFromToken() )
+  const [isLoading, setIsLoading] = useState(true)
 
+  // Sets isLogged and dispatch to state
   useEffect(() => {
-    if (!user.logged) {
-      setIsLogged(false)
+    if (!user.name) {
       dispatch( logout() )
+      setIsLoading(false)
     } 
     else {
-      setIsLogged(true)
-      localStorage.setItem('user', JSON.stringify(user))
       dispatch( login( user.name ) )
-    }
-  }, [user])
-
-  useEffect(() => {
-    if (isLogged === true || isLogged === false) {
       setIsLoading(false)
     }
-  }, [isLogged])
-
-  // ----------- //
-
-  // const data = useSelector(state => state.data)
-
+  }, [user])
+  
+  // Get categories from bkend n' dispatch to state
   useEffect(() => {
     getCategories()
     .then(resp => resp.json())
     .then(data => dispatch( setCategories(data) ) )
   }, [])
 
+  // Retunr "spiner" while isLoading
   if (isLoading) return <span>Cargando...</span>
 
   return (
-    <AuthContext.Provider
-      value={
-        {
-          user: userContext,
-          dispatch: dispatchContext
-        }
-    }>
-      <AppRouter isLogged={ isLogged } />
-    </AuthContext.Provider>
+    <AppRouter />
   )
 }
 

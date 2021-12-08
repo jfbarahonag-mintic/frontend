@@ -1,8 +1,14 @@
 import React from "react";
-import Slider from "infinite-react-carousel";
+import SwiperCore, { Autoplay, Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+// import Slider from "infinite-react-carousel";
 import "./CoverSlider.css";
+import 'swiper/swiper-bundle.min.css'
+import 'swiper/swiper.min.css';
 
 const CoverSlider = ({ images }) => {
+
+  SwiperCore.use([Autoplay, Pagination]);
   
   const settings = {
     autoplay: true,
@@ -11,12 +17,23 @@ const CoverSlider = ({ images }) => {
   };
 
   return (
-
     <section className="slider">
-      <Slider className="slider-content" {...settings}>
+      <Swiper 
+        className="slider-content"
+        spaceBetween={-1}
+        slidesPerView={1}
+        // onSlideChange={() => console.log('slide change')}
+        // onSwiper={(swiper) => console.log(swiper)}
+        autoplay={{ 
+          delay: 2000
+         }}
+        loop={true}
+        pagination={true}
+      >
+      {/* <Slider {...settings}> */}
         {images.map((image) => {
           return (
-            <div 
+            <SwiperSlide
               key={image.id} 
               className="slider__item-wraper"
             > 
@@ -32,11 +49,12 @@ const CoverSlider = ({ images }) => {
                 </p>
 
               </div>
-            </div>
+            </SwiperSlide> 
           )
         })
         }
-      </Slider>
+      {/* </Slider> */}
+      </Swiper>
     </section>
   );
 };
