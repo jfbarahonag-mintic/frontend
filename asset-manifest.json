@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/frontend/static/css/main.7e9fa36a.chunk.css",
+    "main.js": "/frontend/static/js/main.8bf42254.chunk.js",
+    "main.js.map": "/frontend/static/js/main.8bf42254.chunk.js.map",
+    "runtime-main.js": "/frontend/static/js/runtime-main.bb4a3215.js",
+    "runtime-main.js.map": "/frontend/static/js/runtime-main.bb4a3215.js.map",
+    "static/css/2.ee779822.chunk.css": "/frontend/static/css/2.ee779822.chunk.css",
+    "static/js/2.b67e6e1e.chunk.js": "/frontend/static/js/2.b67e6e1e.chunk.js",
+    "static/js/2.b67e6e1e.chunk.js.map": "/frontend/static/js/2.b67e6e1e.chunk.js.map",
+    "index.html": "/frontend/index.html",
+    "static/css/2.ee779822.chunk.css.map": "/frontend/static/css/2.ee779822.chunk.css.map",
+    "static/css/main.7e9fa36a.chunk.css.map": "/frontend/static/css/main.7e9fa36a.chunk.css.map",
+    "static/js/2.b67e6e1e.chunk.js.LICENSE.txt": "/frontend/static/js/2.b67e6e1e.chunk.js.LICENSE.txt",
+    "static/media/account.14c2bba6.svg": "/frontend/static/media/account.14c2bba6.svg",
+    "static/media/cellphone.2fad886d.svg": "/frontend/static/media/cellphone.2fad886d.svg",
+    "static/media/facebook-icon.185411d9.svg": "/frontend/static/media/facebook-icon.185411d9.svg",
+    "static/media/instagram-icon.a14c1530.svg": "/frontend/static/media/instagram-icon.a14c1530.svg",
+    "static/media/linkedin-icon.15771fd1.svg": "/frontend/static/media/linkedin-icon.15771fd1.svg",
+    "static/media/youtube-icon-red.b889bc25.svg": "/frontend/static/media/youtube-icon-red.b889bc25.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bb4a3215.js",
+    "static/css/2.ee779822.chunk.css",
+    "static/js/2.b67e6e1e.chunk.js",
+    "static/css/main.7e9fa36a.chunk.css",
+    "static/js/main.8bf42254.chunk.js"
+  ]
+}
